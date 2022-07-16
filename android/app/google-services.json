@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "740597030439",
+    "project_id": "labelize-45515",
+    "storage_bucket": "labelize-45515.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:740597030439:android:f1017ba37fe91d28313802",
+        "android_client_info": {
+          "package_name": "com.labelize"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "740597030439-t1uoo82hd0lsiecc6dcqe9rsbhl702je.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAlDO0zwAiEdTHexu1y7vYTdPBdBVL3Jv4"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "740597030439-t1uoo82hd0lsiecc6dcqe9rsbhl702je.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
