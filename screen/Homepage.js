@@ -259,7 +259,7 @@ onPress={handleCl}>
 
     toch:{
       marginTop: -23,
-      marginLeft: '55%'
+      marginLeft: '50%'
     },
 
     imageRow:{

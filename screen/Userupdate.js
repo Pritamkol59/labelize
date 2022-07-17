@@ -15,7 +15,7 @@ function Userupdate () {
   
   
   
-
+  
 
     
     /*
@@ -30,6 +30,7 @@ function Userupdate () {
     const [userAdd, setUserAdd] = useState('');
     const [userBusiness, setUserBusinesss] = useState('');
     const [userImg, setUserImg] = useState('');
+    const [mssg, setMssg] = useState('');
 
     const navigation = useNavigation(); 
 
@@ -69,7 +70,7 @@ function Userupdate () {
           if(myData.success===true){
             setIsLoad(false);
 
-            console.log(myData);
+            //console.log(myData);
            
             setUserName(myData.data.users.name);
             setUserEmail(myData.data.users.email);
@@ -123,6 +124,87 @@ function Userupdate () {
         },[]);
 
 
+
+        const postUserData = async () => {
+
+          
+          if(userName!=='' && userEmail!=='' && userAdd!=='' && userBusiness!==''  ){
+
+            setIsLoad(true);
+    
+    
+          try{
+            const tok = await AsyncStorage.getItem('token');
+    
+            const numbed= await AsyncStorage.getItem('number')
+            
+            const suparfresh= JSON.parse(tok);
+    
+            const freshtoken= "Bearer "+suparfresh;
+         const postUserData= await  fetch("https://bobtests.cf/public/api/usersup",{ 
+            method:"POST",
+               headers:new Headers({
+                'Accept': 'application/json',
+                'Content-Type': 'application/json',
+                'Authorization': freshtoken
+              }),
+              body:JSON.stringify({
+                "number":numbed,
+                "name":userName,
+                "email":userEmail,
+                "business":userBusiness,
+                "address":userAdd,
+
+              })
+            
+            });
+               const myData= await postUserData.json();
+              
+              
+              //console.log(myData);
+    
+              
+               
+              if(myData.success===true){
+                setIsLoad(false);
+    
+                //console.log(myData);
+               
+               /* setUserName(myData.data.users.name);
+                setUserEmail(myData.data.users.email);
+                setUserAdd(myData.data.users.address);
+                setUserBusinesss(myData.data.users.business);*/
+                
+                navigation.push('Homepage');
+                
+    
+    
+               
+    
+            
+             }
+               else{
+    
+                setMssg(myData.message);
+            
+             }
+             }
+            
+            catch(e){
+              console.log(e);
+            }
+
+
+          }
+
+          else{
+
+            alert("all fields are required");
+          }
+
+          
+    
+        }
 
 
     const styles = StyleSheet.create({
@@ -331,11 +413,11 @@ function Userupdate () {
   theme={{ roundness: 35,  colors:{primary:"red"}}}
   
   
-  onPress={() =>console.log("Clicked")}>
+  onPress={postUserData}>
   
   
       
-  <Text style={styles.loginOrSignup}> GET OTP</Text> 
+  <Text style={styles.loginOrSignup}>Update</Text> 
     </Button>
 
 

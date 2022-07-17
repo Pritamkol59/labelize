@@ -45,9 +45,13 @@ import Userupdate from './screen/Userupdate';
 const Stack = createNativeStackNavigator();
 
 const Navigation =()=> {
+
+  
+
+
   return (
     <NavigationContainer>
-      <Stack.Navigator initialRouteName='Splash' >
+      <Stack.Navigator initialRouteName='Splash'  >
         <Stack.Screen name="Splash" component={Splash} options={{headerShown:false}} />
        
         <Stack.Screen name="Changerotp" component={Changerotp} options={{headerShown:false }} />
