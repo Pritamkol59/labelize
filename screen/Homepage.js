@@ -3,7 +3,7 @@ import { Text, View,BackHandler, Alert,StyleSheet,Image ,TextInput, ScrollView, 
 import { Button } from 'react-native-paper';
 import { useNavigation } from '@react-navigation/native';
 import AsyncStorage from '@react-native-async-storage/async-storage';
-import { measureConnectionSpeed } from 'react-native-network-bandwith-speed';
+//import { measureConnectionSpeed } from 'react-native-network-bandwith-speed';
 import { SliderBox } from "react-native-image-slider-box";
 
 
@@ -49,7 +49,7 @@ import { SliderBox } from "react-native-image-slider-box";
 */
 
 
-    const  getNetworkBandwidth = async () => {
+   /* const  getNetworkBandwidth = async () => {
       try {
         const networkSpeed = await measureConnectionSpeed();
         console.log(networkSpeed); // Network bandwidth speed
@@ -58,7 +58,7 @@ import { SliderBox } from "react-native-image-slider-box";
         console.log(err);  
       }
 
-    }
+    }*/
 
 
 
@@ -114,24 +114,17 @@ import { SliderBox } from "react-native-image-slider-box";
             });
                const myData= await postUserData.json();
               
-               setIsLoad(false);
-              console.log(myData);
+              
+              //console.log(myData);
 
               
                
               if(myData.success===true){
-
+                setIsLoad(false);
+               
                 setUserData(myData.data.users.name);
 
-               if(myData.data.users.address==null){
-
-                  setAddress('Please Update Your Address');
-
-                }
-                else{
-
-                  setAddress(myData.data.users.address);
-                }
+              
 
 
                 if(myData.data.users.img==null){
@@ -149,10 +142,7 @@ import { SliderBox } from "react-native-image-slider-box";
                else{
 
                 setMssg(myData.message);
-
-               
-
-                  try {
+             try {
                     await AsyncStorage.removeItem('token');
                     await AsyncStorage.removeItem('number');
                    console.log("Done");
@@ -162,14 +152,7 @@ import { SliderBox } from "react-native-image-slider-box";
                 catch(exception) {
                   console.log(exception);
                 }
-  
-
-
-                
-               
-
-
-              }
+             }
              }
             
             catch(e){
@@ -262,7 +245,7 @@ onPress={handleCl}>
      color: "#121212",
     fontSize: 14,
       marginTop: 5,
-      marginLeft: 5
+     
     },
 
     image: {
@@ -282,9 +265,11 @@ onPress={handleCl}>
     imageRow:{
       height: 40,
       flexDirection: "row",
+      marginRight:"5%",
+      marginLeft:"5%"
       
      
-    marginLeft: 10,
+    
     
 
     },
