@@ -21,7 +21,7 @@ export default class Splash extends Component {
             this.timeoutHandle = setTimeout(()=>{
                  // Add your logic for the transition
                  this.setState({ component: < Changerotp/> })  
-            }, 12500);
+            }, 11000);
        }
        
        componentWillUnmount(){

@@ -8,7 +8,7 @@ import { SliderBox } from "react-native-image-slider-box";
 
 
 
- function Homepage ({images}){
+ function Homepage (){
 
 
   const [number, setKeys] = useState([]);
@@ -16,6 +16,8 @@ import { SliderBox } from "react-native-image-slider-box";
   const [token, setServerTokens] = useState('');
   const [isLoad, setIsLoad] = useState(false);
   const [userData, setUserData] = useState('');
+  const [userAddres, setAddress] = useState('');
+  const [userImg, setUserImg] = useState('');
   const [mssg, setMssg] = useState('');
 
   const navigation = useNavigation(); 
@@ -24,7 +26,7 @@ import { SliderBox } from "react-native-image-slider-box";
  
   
 
-    useEffect(() => {
+  /*  useEffect(() => {
       const backAction = () => {
         Alert.alert("Hold on!", "Are you sure you want to Exit?", [
           {
@@ -44,7 +46,7 @@ import { SliderBox } from "react-native-image-slider-box";
   
       return () => backHandler.remove();
     }, []);
-
+*/
 
 
     const  getNetworkBandwidth = async () => {
@@ -111,15 +113,62 @@ import { SliderBox } from "react-native-image-slider-box";
             
             });
                const myData= await postUserData.json();
-               setUserData(myData.data.users.name);
+              
                setIsLoad(false);
-               console.log(myData);
+              console.log(myData);
+
+              
                
               if(myData.success===true){
+
+                setUserData(myData.data.users.name);
+
+               if(myData.data.users.address==null){
+
+                  setAddress('Please Update Your Address');
+
+                }
+                else{
+
+                  setAddress(myData.data.users.address);
+                }
+
+
+                if(myData.data.users.img==null){
+
+                  setUserImg(require('../srcf/user.jpg'));
+
+                }
+                else{
+
+                  setUserImg(myData.data.users.img);
+                }
+
             
              }
                else{
-                setMssg(myData.msg);
+
+                setMssg(myData.message);
+
+               
+
+                  try {
+                    await AsyncStorage.removeItem('token');
+                    await AsyncStorage.removeItem('number');
+                   console.log("Done");
+                   navigation.replace('Login');
+              
+                }
+                catch(exception) {
+                  console.log(exception);
+                }
+  
+
+
+                
+               
+
+
               }
              }
             
@@ -202,6 +251,7 @@ onPress={handleCl}>
 
      color: "#121212",
     fontSize: 25,
+    width: 146,
       marginTop: 10,
       marginLeft: 15
     },
@@ -210,9 +260,9 @@ onPress={handleCl}>
       fontFamily: "roboto-700",
 
      color: "#121212",
-    fontSize: 16,
-      marginTop: 20,
-      marginLeft: 15
+    fontSize: 14,
+      marginTop: 5,
+      marginLeft: 5
     },
 
     image: {
@@ -220,9 +270,13 @@ onPress={handleCl}>
       height: 45,
       borderRadius: 100,
       borderWidth: 2,
-      borderColor: "#000000",
-      marginTop: 12,
-      marginLeft: 15
+      borderColor: "#000000"
+      
+    },
+
+    toch:{
+      marginTop: -23,
+      marginLeft: '55%'
     },
 
     imageRow:{
@@ -238,7 +292,7 @@ onPress={handleCl}>
 
     slider:{
 
-      marginTop: 50,
+      marginTop: 20,
 
     },
 
@@ -290,18 +344,25 @@ onPress={handleCl}>
   else{
 
     return (
+
+      <ScrollView>
       <View style={styles.cont}>
         <Text style={styles.loremIpsum}>Welcome</Text>
         <View style={styles.imageRow}>
-        <Image
-        source={require('../srcf/print.png')}
-        resizeMode="contain"
+        
+      <Text style={styles.user}>{userData}</Text>
+      <TouchableOpacity style= {styles.toch} onPress={() =>navigation.navigate('Userupdate')}>
+      <Image
+        source={userImg}
+        resizeMode="cover"
         style={styles.image}
       ></Image>
 
-      <Text style={styles.user}>{userData}</Text>
+      </TouchableOpacity>
 
 </View>
+
+
 
 <View style={styles.slider}> 
 <SliderBox
@@ -362,6 +423,8 @@ onPress={handleCl}>
 </Button>
 
       </View>
+
+      </ScrollView>
     );
 
   }
