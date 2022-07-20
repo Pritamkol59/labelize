@@ -42,6 +42,8 @@ import Userupdate from './screen/Userupdate';
 
 
 
+
+
 const Stack = createNativeStackNavigator();
 
 const Navigation =()=> {
@@ -58,6 +60,7 @@ const Navigation =()=> {
         <Stack.Screen name="Login" component={Login} options={{headerShown:false }} />
         <Stack.Screen name="Otp" component={Otp} options={{headerShown:false}} />
         <Stack.Screen name="Homepage" component={Homepage} options={{headerShown:false}} />
+        
         <Stack.Screen name="Userupdate" component={Userupdate} options={{headerShown:false}} />
        
         
@@ -77,7 +80,7 @@ constructor(){
   super();
   this.state={
 
-    conn_status:"",
+    conn_status:"online",
   }
 
   this.Chack_Internet();

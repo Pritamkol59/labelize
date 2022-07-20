@@ -10,7 +10,7 @@ import Login from './Login';
 
   //const [isloging,setLogin]= useState(false);
 
-  const [keys, setKeys] = useState(null);
+  const [keys, setKeys] = useState("");
 
   const [isLoad, setIsLoad] = useState(false);
 
@@ -31,13 +31,25 @@ import Login from './Login';
  }
   },[]);*/
 
- /* const getData = async (key) => {
+ /* const getData = async () => {
+    setIsLoad(true);
     // get Data from Storage
     try {
-      const data = await AsyncStorage.getItem(key);
+      const data = await AsyncStorage.getItem('token');
       if (data !== null) {
-        console.log(data);
+        setKeys(data);
+
+        setIsLoad(false);
+
         return data;
+
+      }
+      else{
+
+        setKeys(null);
+
+        return data;
+
       }
     } catch (error) {
       console.log(error);
@@ -87,7 +99,7 @@ import Login from './Login';
 
   else{
 
-    if(keys!== null){
+    if(keys!== null && keys!=='' ){
 
       return (
         <View>
@@ -99,7 +111,7 @@ import Login from './Login';
     
     else{
     
-      
+      if(keys== null && keys!=='' ){
     
         return (
           <View>
@@ -108,7 +120,23 @@ import Login from './Login';
         )
       
       
-      
+        }
+
+        else{
+
+          return (
+            <View>
+
+<View style={styles.loader}>
+  
+  
+  <ActivityIndicator size="large" color="red"/>
+        </View>
+              
+            </View>
+          )
+
+        }
     
     }
 

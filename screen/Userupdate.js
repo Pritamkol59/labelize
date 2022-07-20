@@ -1,4 +1,5 @@
-import React, { useState,useEffect } from 'react'
+import React, { useState,useEffect,useRef } from 'react'
+
 import { StyleSheet, View, Image,ScrollView,TouchableOpacity ,ActivityIndicator,KeyboardAvoidingView,Text} from "react-native";
 import Svg, { Ellipse } from "react-native-svg";
 import { useNavigation } from '@react-navigation/native';
@@ -7,6 +8,10 @@ import {launchCamera, launchImageLibrary} from 'react-native-image-picker';
 
 import { TextInput } from 'react-native-paper';
 import { Button } from 'react-native-paper';
+
+import FontAwesome, { SolidIcons, RegularIcons, BrandIcons } from 'react-native-fontawesome';
+import RBSheet from "react-native-raw-bottom-sheet";
+import ImagePicker from 'react-native-image-crop-picker';
 
 function Userupdate () {
   
@@ -29,10 +34,15 @@ function Userupdate () {
     const [userEmail, setUserEmail] = useState('');
     const [userAdd, setUserAdd] = useState('');
     const [userBusiness, setUserBusinesss] = useState('');
-    const [userImg, setUserImg] = useState('');
+    const [userImg, setUserImg] = useState('https://w7.pngwing.com/pngs/754/2/png-transparent-samsung-galaxy-a8-a8-user-login-telephone-avatar-pawn-blue-angle-sphere-thumbnail.png');
     const [mssg, setMssg] = useState('');
 
     const navigation = useNavigation(); 
+
+    const refRBSheet = useRef();
+
+
+   
 
     const fetchUserData = async () => {
 
@@ -83,7 +93,7 @@ function Userupdate () {
 
             if(myData.data.users.img==null){
 
-              setUserImg(require('../srcf/user.jpg'));
+              
 
             }
             else{
@@ -154,6 +164,7 @@ function Userupdate () {
                 "email":userEmail,
                 "business":userBusiness,
                 "address":userAdd,
+                
 
               })
             
@@ -205,6 +216,128 @@ function Userupdate () {
           
     
         }
+
+        const takePhoto =() =>{
+
+          ImagePicker.openCamera({
+            width: 300,
+            height: 400,
+            cropping: true,
+          }).then(image => {
+            console.log(image);
+            setUserImg(image.path);
+            postUserPhoto(image.path);
+          });
+
+        }
+
+        const takeFromGalary =() =>{
+
+          ImagePicker.openPicker({
+            width: 300,
+            height: 400,
+            cropping: true
+          }).then(image => {
+            console.log(image);
+            setUserImg(image.path);
+            postUserPhoto(image.path);
+
+          });
+
+        }
+
+
+
+        const postUserPhoto = async (imagepath) => {
+        if(userImg!==''){
+
+          const imageData = new FormData();
+
+          const date= new Date();
+
+          
+
+        setIsLoad(true);
+          try{
+            const tok = await AsyncStorage.getItem('token');
+    
+            const numbed= await AsyncStorage.getItem('number')
+            
+            const suparfresh= JSON.parse(tok);
+    
+            const freshtoken= "Bearer "+suparfresh;
+
+
+            imageData.append('number',numbed);
+            imageData.append("dp",{
+
+              uri:imagepath,
+              name:numbed+date +".jpg",
+              filename:numbed+date,
+              type:'image/jpg',
+
+            })
+
+            console.log("Fromdata",imageData);
+
+         const postUserData= await  fetch("https://bobtests.cf/public/api/userdp",{ 
+            method:"POST",
+               headers:new Headers({
+                 
+                'Accept': 'application/json',
+                "Content-Type": "multipart/form-data",
+                
+                'Authorization': freshtoken
+              }),
+              /*body:JSON.stringify({
+                "number":numbed,
+              
+                "dp":filename
+
+              })*/
+              body: imageData,
+            
+            });
+               const myData= await postUserData.json();
+              
+               if(myData.success===true){
+                navigation.push('Homepage');
+
+                setIsLoad(false);
+              // console.log(myData);
+                }
+               else{
+    
+                setIsLoad(false);
+                setMssg(myData.msg);
+               // console.log(myData.msg);
+
+            
+             }
+             }
+            
+            catch(e){
+              console.log(e);
+            }
+
+
+          }
+
+          else{
+
+            alert("all fields are required");
+          }
+          }
+
+
+
+
+
+
+
+
+
+
 
 
     const styles = StyleSheet.create({
@@ -260,8 +393,16 @@ function Userupdate () {
         width: 110,
         height: 110,
         borderRadius: 100,
-        borderWidth: 2,
+        borderWidth: 1,
         borderColor: "#000000",
+        
+        
+      },
+
+      imagex: {
+        width: 25,
+        height: 25,
+       
         
         
       },
@@ -274,11 +415,40 @@ function Userupdate () {
         marginLeft: 18,
         marginRight:18
       },
+
+      listContainer: {
+        flex: 1,
+        padding: 25
+      },
+
+      listTitle: {
+        fontSize: 16,
+        marginBottom: 20,
+        color: "#666"
+      },
+
+      listButton: {
+        flexDirection: "row",
+        alignItems: "center",
+        paddingVertical: 10
+      },
+
+      listLabel: {
+        fontSize: 16
+      },
+
       toch:{
         top: "50%",
         alignSelf: "center",
         position: "absolute"
+      },
+
+      tochx:{
+        top: "40%",
+        left:'12%',
+        position: "absolute"
       }
+
     });
 
     if(isLoad){
@@ -320,10 +490,22 @@ function Userupdate () {
             ry={222}
           ></Ellipse>
         </Svg>
-  
-        <TouchableOpacity style= {styles.toch} onPress={() =>console.log("Clicked")}>
+
+        <TouchableOpacity style= {styles.tochx} onPress={() => navigation.push('Homepage')}>
+
         <Image
-          source={userImg}
+          source={require('../srcf/back.png')}
+          resizeMode="cover"
+          style={styles.imagex}
+        ></Image>
+
+        </TouchableOpacity>
+  
+        <TouchableOpacity style= {styles.toch} onPress={() =>refRBSheet.current.open()}>
+        <Image
+          source={{
+           uri: userImg ,
+          }}
           resizeMode="cover"
           style={styles.image}
         ></Image>
@@ -408,6 +590,29 @@ function Userupdate () {
   </KeyboardAvoidingView>
 
 
+  <RBSheet
+             ref={refRBSheet}
+              height={200}
+            >
+              <View style={styles.listContainer}>
+                <Text style={styles.listTitle}>Chose From</Text>
+               
+                <TouchableOpacity style={styles.listButton} onPress={takePhoto} >
+                      <Text style={styles.listLabel}> <FontAwesome style={{fontSize: 16}} icon={SolidIcons.camera}></FontAwesome> Camera </Text>
+                      
+                      </TouchableOpacity>
+
+                      <TouchableOpacity style={styles.listButton} onPress={takeFromGalary}>
+                      <Text style={styles.listLabel}> <FontAwesome style={{fontSize: 16}} icon={SolidIcons.image}></FontAwesome> Galary </Text>
+                      
+                      </TouchableOpacity>
+
+              </View>
+            </RBSheet>
+
+
+
+
   <Button  style={styles.btn}  mode="contained" 
   
   theme={{ roundness: 35,  colors:{primary:"red"}}}
@@ -424,6 +629,8 @@ function Userupdate () {
     <Text style={styles.loginOrSignup}> </Text> 
 
         </View>
+
+      
   
         </ScrollView>
   

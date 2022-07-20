@@ -17,7 +17,7 @@ import { SliderBox } from "react-native-image-slider-box";
   const [isLoad, setIsLoad] = useState(false);
   const [userData, setUserData] = useState('');
   const [userAddres, setAddress] = useState('');
-  const [userImg, setUserImg] = useState('');
+  const [userImg, setUserImg] = useState('https://w7.pngwing.com/pngs/754/2/png-transparent-samsung-galaxy-a8-a8-user-login-telephone-avatar-pawn-blue-angle-sphere-thumbnail.png');
   const [mssg, setMssg] = useState('');
 
   const navigation = useNavigation(); 
@@ -26,7 +26,7 @@ import { SliderBox } from "react-native-image-slider-box";
  
   
 
-  /*  useEffect(() => {
+   useEffect(() => {
       const backAction = () => {
         Alert.alert("Hold on!", "Are you sure you want to Exit?", [
           {
@@ -46,7 +46,7 @@ import { SliderBox } from "react-native-image-slider-box";
   
       return () => backHandler.remove();
     }, []);
-*/
+
 
 
    /* const  getNetworkBandwidth = async () => {
@@ -129,7 +129,7 @@ import { SliderBox } from "react-native-image-slider-box";
 
                 if(myData.data.users.img==null){
 
-                  setUserImg(require('../srcf/user.jpg'));
+                  
 
                 }
                 else{
@@ -249,17 +249,18 @@ onPress={handleCl}>
     },
 
     image: {
-      width: 45,
-      height: 45,
+      width: 50,
+      height: 50,
       borderRadius: 100,
-      borderWidth: 2,
+      borderWidth: 1,
       borderColor: "#000000"
       
     },
 
     toch:{
       marginTop: -23,
-      marginLeft: '50%'
+      marginLeft: '85%',
+      position:'absolute',
     },
 
     imageRow:{
@@ -338,7 +339,9 @@ onPress={handleCl}>
       <Text style={styles.user}>{userData}</Text>
       <TouchableOpacity style= {styles.toch} onPress={() =>navigation.navigate('Userupdate')}>
       <Image
-        source={userImg}
+         source={{
+          uri: userImg ,
+         }}
         resizeMode="cover"
         style={styles.image}
       ></Image>
