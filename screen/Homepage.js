@@ -315,8 +315,8 @@ onPress={handleCl}>
      
       flexDirection: "row",
      
-      marginRight: 20,
-      marginLeft: 20,
+      marginRight: '10%',
+      marginLeft: '10%',
      
      
    
@@ -325,14 +325,14 @@ onPress={handleCl}>
 
     imagecard:{
 
-      height:95,
+      height:105,
       width:165
     },
 
     imagecard1:{
 
-      marginLeft:'15%',
-      height:95,
+      marginLeft:'5%',
+      height:105,
       width:165
     },
 
@@ -395,7 +395,7 @@ onPress={handleCl}>
         <View style={styles.imageRow}>
         
       <Text style={styles.user}>{userData}</Text>
-      <TouchableOpacity style= {styles.toch} onPress={() =>navigation.navigate('Userupdate')}>
+      <TouchableOpacity style= {styles.toch} onPress={() =>navigation.push('Userupdate')}>
       <Image
          source={{
           uri: userImg ,
