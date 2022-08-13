@@ -8,6 +8,7 @@ import Svg, { Ellipse } from "react-native-svg";
 
 
 import { useNavigation } from '@react-navigation/native';
+import { api } from './Constances';
 
 
 
@@ -220,7 +221,7 @@ function PhoneSignIn() {
 */
 
 try{
-const postUserData= await  fetch("https://bobtests.cf/public/api/signup",{ 
+const postUserData= await  fetch(api+"signup",{ 
 
   method:"POST",
   headers:{

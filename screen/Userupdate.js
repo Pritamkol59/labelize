@@ -12,6 +12,7 @@ import { Button } from 'react-native-paper';
 import FontAwesome, { SolidIcons, RegularIcons, BrandIcons } from 'react-native-fontawesome';
 import RBSheet from "react-native-raw-bottom-sheet";
 import ImagePicker from 'react-native-image-crop-picker';
+import { api } from './Constances';
 
 function Userupdate () {
   
@@ -36,7 +37,7 @@ function Userupdate () {
     const [userBusiness, setUserBusinesss] = useState('');
     const [userImg, setUserImg] = useState('https://w7.pngwing.com/pngs/754/2/png-transparent-samsung-galaxy-a8-a8-user-login-telephone-avatar-pawn-blue-angle-sphere-thumbnail.png');
     const [mssg, setMssg] = useState('');
-
+     
     const navigation = useNavigation(); 
 
     const refRBSheet = useRef();
@@ -58,7 +59,7 @@ function Userupdate () {
         const suparfresh= JSON.parse(tok);
 
         const freshtoken= "Bearer "+suparfresh;
-     const postUserData= await  fetch("https://bobtests.cf/public/api/users",{ 
+     const postUserData= await  fetch(api+"users",{ 
         method:"POST",
            headers:new Headers({
             'Accept': 'application/json',
@@ -127,9 +128,9 @@ function Userupdate () {
 
     useEffect(()=>{
   
-      AsyncStorage.getItem('number')
-      .then(fetchUserData())
-      .catch(e => {})
+     
+      fetchUserData();
+      
 
         },[]);
 
@@ -151,7 +152,7 @@ function Userupdate () {
             const suparfresh= JSON.parse(tok);
     
             const freshtoken= "Bearer "+suparfresh;
-         const postUserData= await  fetch("https://bobtests.cf/public/api/usersup",{ 
+         const postUserData= await  fetch(api+"usersup",{ 
             method:"POST",
                headers:new Headers({
                 'Accept': 'application/json',
@@ -280,7 +281,7 @@ function Userupdate () {
 
             console.log("Fromdata",imageData);
 
-         const postUserData= await  fetch("https://bobtests.cf/public/api/userdp",{ 
+         const postUserData= await  fetch(api+"userdp",{ 
             method:"POST",
                headers:new Headers({
                  
@@ -443,6 +444,16 @@ function Userupdate () {
         position: "absolute"
       },
 
+      pictext:{
+
+        top: "80%",
+        alignSelf: "center",
+        position: "absolute",
+        color: "#fff"
+
+
+      },
+
       tochx:{
         top: "40%",
         left:'12%',
@@ -511,6 +522,9 @@ function Userupdate () {
         ></Image>
   
         </TouchableOpacity>
+
+
+        <Text style= {styles.pictext}>Touch The Image & Upload Business Logo</Text>
   
         </View>
   

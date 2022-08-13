@@ -5,6 +5,7 @@ import OTPInputView from '@twotalltotems/react-native-otp-input'
 
 import { useNavigation } from '@react-navigation/native';
 import AsyncStorage from '@react-native-async-storage/async-storage';
+import { api } from './Constances';
 
 
 
@@ -343,7 +344,7 @@ loader:{
 
       
       
-        fetch("https://bobtests.cf/public/api/login",{
+        fetch(api+"login",{
           
      method:"POST",
      headers:{

@@ -5,18 +5,18 @@ import { useNavigation } from '@react-navigation/native';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 //import { measureConnectionSpeed } from 'react-native-network-bandwith-speed';
 import { SliderBox } from "react-native-image-slider-box";
+import { api } from './Constances';
 
-
-
+import FieldSet from 'react-native-fieldset';
  function Homepage (){
 
 
-  const [number, setKeys] = useState([]);
+ /* const [number, setKeys] = useState([]);
   const [netSpeed, setNetSpeed] = useState('');
-  const [token, setServerTokens] = useState('');
+  const [token, setServerTokens] = useState('');*/
   const [isLoad, setIsLoad] = useState(false);
   const [userData, setUserData] = useState('');
-  const [userAddres, setAddress] = useState('');
+ // const [userAddres, setAddress] = useState('');
   const [userImg, setUserImg] = useState('https://w7.pngwing.com/pngs/754/2/png-transparent-samsung-galaxy-a8-a8-user-login-telephone-avatar-pawn-blue-angle-sphere-thumbnail.png');
   const [mssg, setMssg] = useState('');
 
@@ -62,24 +62,25 @@ import { SliderBox } from "react-native-image-slider-box";
 
 
 
-    const  getServerToken = async () => {
+    
 
+
+
+    const postUserData= async()=>{
 
       try {
-        const token = await AsyncStorage.getItem('token');
-        console.log(token); // Network bandwidth speed
-        setServerTokens(token); 
-      } catch (err) {
-        console.log(err);  
-      }
-
-
-
+        await AsyncStorage.removeItem('token');
+        await AsyncStorage.removeItem('number');
+       console.log("Done");
+       navigation.replace('Login');
+  
+    }
+    catch(exception) {
+      console.log(exception);
     }
 
 
-
-
+    }
 
 
     
@@ -100,7 +101,9 @@ import { SliderBox } from "react-native-image-slider-box";
             const suparfresh= JSON.parse(tok);
 
             const freshtoken= "Bearer "+suparfresh;
-         const postUserData= await  fetch("https://bobtests.cf/public/api/users",{ 
+
+
+        /* const postUserData= await  fetch(api+"users",{ 
             method:"POST",
                headers:new Headers({
                 'Accept': 'application/json',
@@ -111,48 +114,67 @@ import { SliderBox } from "react-native-image-slider-box";
                 "number":numbed
               })
             
-            });
-               const myData= await postUserData.json();
+            });*/
+
+               //const myData= await postUserData.json();
               
               
               //console.log(myData);
 
               
-               
-              if(myData.success===true){
-                setIsLoad(false);
-               
-                setUserData(myData.data.users.name);
+              fetch(api+"users",{ 
+                method:"POST",
+                   headers:new Headers({
+                    'Accept': 'application/json',
+                    'Content-Type': 'application/json',
+                    'Authorization': freshtoken
+                  }),
+                  body:JSON.stringify({
+                    "number":numbed
+                  })
+                
+                })
+
+                .then(res=>res.json())
+     .then(myData=>{
+
+      if(myData.success===true){
+        setIsLoad(false);
+       
+        setUserData(myData.data.users.name);
+
+      
+
+
+        if(myData.data.users.img==null){
+
+          
+
+        }
+        else{
+
+          setUserImg(myData.data.users.img);
+        }
+
+    
+     }
+
+     else{
+
+      setMssg(myData.message);
+
+      postUserData();
+  
+   }
+
+
+
+     })
 
               
-
-
-                if(myData.data.users.img==null){
-
-                  
-
-                }
-                else{
-
-                  setUserImg(myData.data.users.img);
-                }
-
-            
-             }
-               else{
-
-                setMssg(myData.message);
-             try {
-                    await AsyncStorage.removeItem('token');
-                    await AsyncStorage.removeItem('number');
-                   console.log("Done");
-                   navigation.replace('Login');
+               
               
-                }
-                catch(exception) {
-                  console.log(exception);
-                }
-             }
+               
              }
             
             catch(e){
@@ -191,9 +213,8 @@ onPress={handleCl}>
 
      useEffect(()=>{
   
-      AsyncStorage.getItem('number')
-      .then(setKeys).then(getServerToken()).then(fetchUserData())
-      .catch(e => {})
+      fetchUserData();
+      
 
         },[]);
 
@@ -268,12 +289,17 @@ onPress={handleCl}>
       flexDirection: "row",
       marginRight:"5%",
       marginLeft:"5%"
-      
-     
-    
-    
+      },
 
-    },
+      imageRowx:{
+
+        marginTop:15,
+      
+        flexDirection: "row",
+        marginRight:"10%",
+        marginLeft:"10%"
+
+      },
 
 
     slider:{
@@ -281,6 +307,38 @@ onPress={handleCl}>
       marginTop: 20,
 
     },
+
+    afterslider:{
+
+      marginTop: 10,
+     
+     
+      flexDirection: "row",
+     
+      marginRight: 20,
+      marginLeft: 20,
+     
+     
+   
+
+    },
+
+    imagecard:{
+
+      height:95,
+      width:165
+    },
+
+    imagecard1:{
+
+      marginLeft:'15%',
+      height:95,
+      width:165
+    },
+
+
+
+    
 
     
     loginOrSignup: {
@@ -396,6 +454,41 @@ onPress={handleCl}>
 
 
 </View>
+
+<View style={styles.afterslider}>
+
+  <TouchableOpacity>
+
+<Image
+         source={
+          require('../srcf/fc.png') 
+         }
+         resizeMode="contain"
+          style={styles.imagecard}
+        
+      ></Image>
+
+</TouchableOpacity>
+
+<TouchableOpacity>
+
+<Image
+         source={
+          require('../srcf/pc.png') 
+         }
+         resizeMode="contain"
+          style={styles.imagecard1}
+        
+      ></Image>
+
+
+</TouchableOpacity>
+
+
+</View>
+
+
+
         
 
 <Button  style={styles.btn}  mode="contained" 
