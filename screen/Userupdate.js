@@ -13,6 +13,8 @@ import FontAwesome, { SolidIcons, RegularIcons, BrandIcons } from 'react-native-
 import RBSheet from "react-native-raw-bottom-sheet";
 import ImagePicker from 'react-native-image-crop-picker';
 import { api } from './Constances';
+import Icon from 'react-native-vector-icons/AntDesign';
+import MyTabs from './Bottomnav';
 
 function Userupdate () {
   
@@ -333,7 +335,19 @@ function Userupdate () {
 
 
 
+          const handleCl = async () => {
 
+            try {
+              await AsyncStorage.removeItem('token');
+              await AsyncStorage.removeItem('number');
+             console.log("Done");
+             navigation.replace('Login');
+        
+          }
+          catch(exception) {
+            console.log(exception);
+          }
+        }
 
 
 
@@ -360,6 +374,18 @@ function Userupdate () {
         strokeWidth:10,
         height:50, 
         marginTop: 20,
+        marginLeft: 18,
+        marginRight:18,
+        
+  
+        
+      },
+      btn1: {
+      
+      
+        strokeWidth:10,
+        height:50, 
+        marginTop: 10,
         marginLeft: 18,
         marginRight:18,
         
@@ -458,7 +484,23 @@ function Userupdate () {
         top: "40%",
         left:'12%',
         position: "absolute"
-      }
+      },
+      footer:{
+
+     
+        // backgroundColor: "rgba(231,231,231,1)",
+         alignItems:"center",
+        
+         marginTop:'165%',
+         
+
+        
+
+        position:'absolute',
+
+        
+
+   }
 
     });
 
@@ -612,12 +654,12 @@ function Userupdate () {
                 <Text style={styles.listTitle}>Chose From</Text>
                
                 <TouchableOpacity style={styles.listButton} onPress={takePhoto} >
-                      <Text style={styles.listLabel}> <FontAwesome style={{fontSize: 16}} icon={SolidIcons.camera}></FontAwesome> Camera </Text>
+                      <Text style={styles.listLabel}> <Icon name="camerao" size={30} color="#900" /> Camera </Text>
                       
                       </TouchableOpacity>
 
                       <TouchableOpacity style={styles.listButton} onPress={takeFromGalary}>
-                      <Text style={styles.listLabel}> <FontAwesome style={{fontSize: 16}} icon={SolidIcons.image}></FontAwesome> Galary </Text>
+                      <Text style={styles.listLabel}> <Icon name="picture" size={30} color="#900" /> Galary </Text>
                       
                       </TouchableOpacity>
 
@@ -640,13 +682,39 @@ function Userupdate () {
     </Button>
 
 
-    <Text style={styles.loginOrSignup}> </Text> 
+     
+
+
+
+
+    <Button  style={styles.btn1}  mode="contained" 
+
+theme={{ roundness: 35,  colors:{primary:"red"}}}
+
+
+onPress={handleCl}>
+
+
+  
+<Text style={styles.loginOrSignup}>Logout</Text> 
+</Button>
+
+
+<Text style={styles.loginOrSignup}> </Text>
+<Text style={styles.loginOrSignup}> </Text>
+
 
         </View>
 
       
   
         </ScrollView>
+
+        <View style={styles.footer}>
+      
+      <MyTabs/>
+     
+      </View>
   
         </>
       )

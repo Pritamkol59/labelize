@@ -33,6 +33,7 @@ import Otp from './screen/Otp';
 import Homepage from './screen/Homepage';
 import Changerotp from './screen/Changerotp';
 import Userupdate from './screen/Userupdate';
+import Freecard from './screen/Freecard';
 
 
 
@@ -60,6 +61,7 @@ const Navigation =()=> {
         <Stack.Screen name="Login" component={Login} options={{headerShown:false }} />
         <Stack.Screen name="Otp" component={Otp} options={{headerShown:false}} />
         <Stack.Screen name="Homepage" component={Homepage} options={{headerShown:false}} />
+        <Stack.Screen name="Freecard" component={Freecard} options={{headerShown:false}} />
         
         <Stack.Screen name="Userupdate" component={Userupdate} options={{headerShown:false}} />
        

@@ -7,6 +7,11 @@ import AsyncStorage from '@react-native-async-storage/async-storage';
 import { SliderBox } from "react-native-image-slider-box";
 import { api } from './Constances';
 
+
+import MyTabs from './Bottomnav';
+
+
+
 import FieldSet from 'react-native-fieldset';
  function Homepage (){
 
@@ -22,7 +27,7 @@ import FieldSet from 'react-native-fieldset';
 
   const navigation = useNavigation(); 
 
-   
+  
  
   
 
@@ -313,30 +318,51 @@ onPress={handleCl}>
       marginTop: 10,
      
      
-      flexDirection: "row",
+      
      
-      marginRight: '10%',
-      marginLeft: '10%',
+      alignItems: "center",
      
-     
+      marginLeft:'10%',
+      marginRight:'10%',
    
+
+    },
+
+    aftersliderRow:{
+      
+      flexDirection: "row",
 
     },
 
     imagecard:{
 
-      height:105,
-      width:165
+      height:125,
+      width:155
     },
 
     imagecard1:{
 
-      marginLeft:'5%',
-      height:105,
-      width:165
+      marginLeft:10,
+      height:125,
+      width:155
     },
 
+    footer:{
 
+     
+         // backgroundColor: "rgba(231,231,231,1)",
+          alignItems:"center",
+         
+          marginTop:'165%',
+          
+
+         
+
+         position:'absolute',
+
+         
+
+    },
 
     
 
@@ -349,27 +375,7 @@ onPress={handleCl}>
 
   });
 
-  const handleCl = async () => {
-
-    try {
-      await AsyncStorage.removeItem('token');
-      await AsyncStorage.removeItem('number');
-     console.log("Done");
-     navigation.replace('Login');
-
-  }
-  catch(exception) {
-    console.log(exception);
-  }
-
   
-
-  
-    
-   
-
-
-  }
 
   if(isLoad){
     return(
@@ -389,13 +395,14 @@ onPress={handleCl}>
 
     return (
 
+      <>
       <ScrollView>
       <View style={styles.cont}>
         <Text style={styles.loremIpsum}>Welcome</Text>
         <View style={styles.imageRow}>
         
       <Text style={styles.user}>{userData}</Text>
-      <TouchableOpacity style= {styles.toch} onPress={() =>navigation.push('Userupdate')}>
+      <TouchableOpacity style= {styles.toch}>
       <Image
          source={{
           uri: userImg ,
@@ -419,7 +426,9 @@ onPress={handleCl}>
     "https://source.unsplash.com/1024x768/?girl",
     "https://source.unsplash.com/1024x768/?tree", // Network image
     "https://c4.wallpaperflare.com/wallpaper/297/22/531/lake-blue-moonlight-moon-wallpaper-thumb.jpg", // Network image
-              // Local image
+             // Local image
+
+     
   ]}
   sliderBoxHeight={200}
   onCurrentImagePressed={index => console.warn(`image ${index} pressed`)}
@@ -456,8 +465,12 @@ onPress={handleCl}>
 </View>
 
 <View style={styles.afterslider}>
+<View style={styles.aftersliderRow}> 
 
-  <TouchableOpacity>
+
+  
+
+  <TouchableOpacity  onPress={() =>navigation.push('Freecard')}>
 
 <Image
          source={
@@ -470,7 +483,7 @@ onPress={handleCl}>
 
 </TouchableOpacity>
 
-<TouchableOpacity>
+<TouchableOpacity >
 
 <Image
          source={
@@ -487,25 +500,48 @@ onPress={handleCl}>
 
 </View>
 
+</View>
+
+
+<Text>Google Video Ads Loding..</Text>
+
+
 
 
         
 
-<Button  style={styles.btn}  mode="contained" 
-
-theme={{ roundness: 35,  colors:{primary:"red"}}}
 
 
-onPress={handleCl}>
 
 
-  
-<Text style={styles.loginOrSignup}>Logout</Text> 
-</Button>
+
+
+
+<Text> </Text>
+
+
+
 
       </View>
 
+
+     
+
       </ScrollView>
+
+
+      <View style={styles.footer}>
+      
+      <MyTabs/>
+     
+      </View>
+
+      </>
+    
+
+
+
+
     );
 
   }
