@@ -1,5 +1,5 @@
 import React, { useEffect,useState } from 'react'
-import { Text, View,BackHandler, Alert,StyleSheet,Image ,TextInput, ScrollView, KeyboardAvoidingView,TouchableOpacity,ActivityIndicator} from 'react-native'
+import { Text, View,BackHandler, Alert,StyleSheet,Image,ImageBackground ,TextInput, ScrollView, Dimensions,KeyboardAvoidingView,TouchableOpacity,ActivityIndicator} from 'react-native'
 import { Button } from 'react-native-paper';
 import { useNavigation } from '@react-navigation/native';
 import AsyncStorage from '@react-native-async-storage/async-storage';
@@ -10,7 +10,8 @@ import { api } from './Constances';
 
 import MyTabs from './Bottomnav';
 
-
+const windowWidth = Dimensions.get('window').width;
+const windowHeight = Dimensions.get('window').height;
 
 import FieldSet from 'react-native-fieldset';
  function Homepage (){
@@ -250,27 +251,38 @@ onPress={handleCl}>
 
      cont: {
       
-      
-     
+      backgroundColor:"#313131",
+      height:windowHeight,
      
     },
+
+    holder:{
+
+      width: '100%',
+      height:190,
+      marginTop:-10,
+
+    },
+
+
+    image_imageStyle:{},
 
      loremIpsum: {
       fontFamily: "roboto-700",
 
-     color: "#121212",
+     color: "white",
     fontSize: 25,
     width: 146,
-      marginTop: 10,
+      marginTop: 15,
       marginLeft: 15
     },
 
     user: {
       fontFamily: "roboto-700",
 
-     color: "#121212",
-    fontSize: 14,
-      marginTop: 5,
+     color: "white",
+    fontSize: 16,
+      marginTop: 10,
      
     },
 
@@ -342,7 +354,7 @@ onPress={handleCl}>
 
     imagecard1:{
 
-      marginLeft:10,
+      marginLeft:35,
       height:125,
       width:155
     },
@@ -353,7 +365,7 @@ onPress={handleCl}>
          // backgroundColor: "rgba(231,231,231,1)",
           alignItems:"center",
          
-          marginTop:'165%',
+          marginTop: windowHeight-70,
           
 
          
@@ -398,7 +410,18 @@ onPress={handleCl}>
       <>
       <ScrollView>
       <View style={styles.cont}>
-        <Text style={styles.loremIpsum}>Welcome</Text>
+
+<View>
+
+
+<ImageBackground
+        source={require("../srcf/hm.png")}
+        resizeMode="contain"
+        style={styles.holder}
+        imageStyle={styles.image_imageStyle}
+      >
+
+<Text style={styles.loremIpsum}>Welcome</Text>
         <View style={styles.imageRow}>
         
       <Text style={styles.user}>{userData}</Text>
@@ -415,22 +438,31 @@ onPress={handleCl}>
 
 </View>
 
+</ImageBackground>
+
+
+</View>
+
+      
+
 
 
 <View style={styles.slider}> 
 <SliderBox
   
   images={ [
-    "https://source.unsplash.com/1024x768/?nature",
-    "https://source.unsplash.com/1024x768/?water",
-    "https://source.unsplash.com/1024x768/?girl",
-    "https://source.unsplash.com/1024x768/?tree", // Network image
-    "https://c4.wallpaperflare.com/wallpaper/297/22/531/lake-blue-moonlight-moon-wallpaper-thumb.jpg", // Network image
+    require("../srcf/pa1.jpg"),
+    require("../srcf/pa2.jpg"),
+    require("../srcf/pa3.jpg"),
+    require("../srcf/pa4.jpg"),
+    require("../srcf/pa5.jpg"),
+   // Network image
              // Local image
 
      
   ]}
-  sliderBoxHeight={200}
+  sliderBoxHeight={210}
+  
   onCurrentImagePressed={index => console.warn(`image ${index} pressed`)}
   dotColor="#FFEE58"
   inactiveDotColor="#90A4AE"
@@ -438,7 +470,7 @@ onPress={handleCl}>
   autoplay
   circleLoop
   resizeMethod={'resize'}
-  resizeMode={'cover'}
+  resizeMode={'contain'}
   paginationBoxStyle={{
     position: "absolute",
     bottom: 0,

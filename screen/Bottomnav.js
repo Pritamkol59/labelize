@@ -1,6 +1,6 @@
 import * as React from 'react';
 
-import { Text, View,BackHandler, Alert,StyleSheet,Image ,TextInput, ScrollView, KeyboardAvoidingView,TouchableOpacity,ActivityIndicator} from 'react-native';
+import { Text, View,BackHandler, Alert,StyleSheet,Image ,TextInput, ScrollView, KeyboardAvoidingView,TouchableOpacity,ActivityIndicator, ImageBackground} from 'react-native';
 
 
 
@@ -27,7 +27,7 @@ const MyTabs = () => {
         navbar:{
 
             flexDirection:'row',
-            backgroundColor:'#eee',
+            backgroundColor:'#7C50FE',
             width:'90%',
             justifyContent:'space-evenly',
             borderRadius:40,
@@ -35,6 +35,25 @@ const MyTabs = () => {
             marginRight:'5%',
             
 
+        },
+
+        holder:{
+            width:'90%',
+            height:50,
+
+        },
+
+        text:{
+
+            color:"white",
+            fontWeight: "bold",
+
+        },
+
+        image:{
+            marginTop:2,
+            height:40,
+            width:40
         },
         IconBehave:{
 
@@ -55,19 +74,74 @@ const MyTabs = () => {
       
 <>
        
-            <View style={styles.navbar}>
+            <View >
 
-<TouchableOpacity onPress={() =>navigation.push('Homepage')}><Icon name="home" size={28} color="#900" /><Text>Home</Text></TouchableOpacity>
-<TouchableOpacity><Icon name="notification" size={28} color="#900" /><Text>Offer</Text></TouchableOpacity>
+                <ImageBackground source={require("../srcf/bbb.png")}
+        resizeMode="contain"
+        style={styles.navbar}
+        imageStyle={styles.image_imageStyle}>
 
-<TouchableOpacity><Icon name="form" size={28} color="#900" /><Text>Help</Text></TouchableOpacity>
-<TouchableOpacity><Icon name="bells" size={28} color="#900" /><Text>notifi.</Text></TouchableOpacity>
-<TouchableOpacity onPress={() =>navigation.push('Userupdate')}><Icon name="user" size={28} color="#900" /><Text>Users</Text></TouchableOpacity>
+<TouchableOpacity onPress={() =>navigation.push('Homepage')}>
+<Image
+          source={require('../srcf/home.png')}
+          resizeMode="contain"
+          style={styles.image}
+        ></Image>
+    
+    <Text  style={styles.text}>Home</Text>
+    </TouchableOpacity>
+<TouchableOpacity>
+    
+    <Image
+          source={require('../srcf/offer.png')}
+          resizeMode="contain"
+          style={styles.image}
+        ></Image>
+        
+        <Text  style={styles.text}>Offers</Text>
+        
+        </TouchableOpacity>
+
+<TouchableOpacity>
+    <Image
+          source={require('../srcf/help.png')}
+          resizeMode="contain"
+          style={styles.image}
+        ></Image>
+
+        <Text  style={styles.text}>Helps</Text>
+        
+        </TouchableOpacity>
+<TouchableOpacity>
+    
+    <Image
+          source={require('../srcf/noti.png')}
+          resizeMode="contain"
+          style={styles.image}
+        ></Image>
+        
+        <Text  style={styles.text}>notifi.</Text>
+        
+        </TouchableOpacity>
+
+
+
+<TouchableOpacity onPress={() =>navigation.push('Userupdate')}>
+    
+    <Image
+          source={require('../srcf/userm.png')}
+          resizeMode="contain"
+          style={styles.image}
+        ></Image>
+        
+        <Text  style={styles.text}>Users</Text>
+        
+        </TouchableOpacity>
 
 
 
 
-
+        </ImageBackground>
                
 
            

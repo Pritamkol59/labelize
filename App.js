@@ -35,8 +35,9 @@ import Changerotp from './screen/Changerotp';
 import Userupdate from './screen/Userupdate';
 import Freecard from './screen/Freecard';
 
-
-
+import Plus from './screen/Plus';
+import FreeManually from './screen/FreeManually';
+import FreeLink from './screen/FreeLink';
 
 
 
@@ -62,6 +63,12 @@ const Navigation =()=> {
         <Stack.Screen name="Otp" component={Otp} options={{headerShown:false}} />
         <Stack.Screen name="Homepage" component={Homepage} options={{headerShown:false}} />
         <Stack.Screen name="Freecard" component={Freecard} options={{headerShown:false}} />
+        <Stack.Screen name="Plus" component={Plus} options={{headerShown:false}} />
+
+        <Stack.Screen name="FreeManually" component={FreeManually} options={{headerShown:false}} />
+        <Stack.Screen name="FreeLink" component={FreeLink} options={{headerShown:false}} />
+
+        
         
         <Stack.Screen name="Userupdate" component={Userupdate} options={{headerShown:false}} />
        

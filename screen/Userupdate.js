@@ -1,6 +1,6 @@
 import React, { useState,useEffect,useRef } from 'react'
 
-import { StyleSheet, View, Image,ScrollView,TouchableOpacity ,ActivityIndicator,KeyboardAvoidingView,Text} from "react-native";
+import { StyleSheet, View, Image,ScrollView,TouchableOpacity,Dimensions ,ActivityIndicator,KeyboardAvoidingView,Text} from "react-native";
 import Svg, { Ellipse } from "react-native-svg";
 import { useNavigation } from '@react-navigation/native';
 import AsyncStorage from '@react-native-async-storage/async-storage';
@@ -15,6 +15,10 @@ import ImagePicker from 'react-native-image-crop-picker';
 import { api } from './Constances';
 import Icon from 'react-native-vector-icons/AntDesign';
 import MyTabs from './Bottomnav';
+
+
+const windowWidth = Dimensions.get('window').width;
+const windowHeight = Dimensions.get('window').height;
 
 function Userupdate () {
   
@@ -491,7 +495,7 @@ function Userupdate () {
         // backgroundColor: "rgba(231,231,231,1)",
          alignItems:"center",
         
-         marginTop:'165%',
+         marginTop: windowHeight-70,
          
 
         

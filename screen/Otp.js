@@ -1,5 +1,5 @@
 import React, { useEffect,useState } from 'react'
-import { Text, View,BackHandler, Alert,StyleSheet,Image ,TextInput, ScrollView, KeyboardAvoidingView,TouchableOpacity} from 'react-native'
+import { Text, View,BackHandler, Alert,StyleSheet,Image ,TextInput,Dimensions, ScrollView, KeyboardAvoidingView,TouchableOpacity} from 'react-native'
 import { ActivityIndicator, Button } from 'react-native-paper';
 import OTPInputView from '@twotalltotems/react-native-otp-input'
 
@@ -12,7 +12,8 @@ import { api } from './Constances';
 
 
 
-
+const windowWidth = Dimensions.get('window').width;
+const windowHeight = Dimensions.get('window').height;
 
 
 export default function Otp ({route}) {
@@ -187,6 +188,8 @@ const [counter, setCounter] = React.useState(30);
   const styles = StyleSheet.create({
     container: {
       flex: 1,
+
+      height:windowHeight,
       backgroundColor: "rgba(255,255,255,1)"
     },
     image: {
@@ -290,7 +293,7 @@ const [counter, setCounter] = React.useState(30);
 underlineStyleBase: {
  
   borderWidth: 1,
-  borderColor: "black",
+  borderColor: "#6C63FF",
   color:'black'
    
 },
@@ -436,7 +439,7 @@ loader:{
       <View style={styles.loader}>
 
 
-<ActivityIndicator size="large" color="red"/>
+<ActivityIndicator size="large" color="#6C63FF"/>
       </View>
 
 
@@ -491,7 +494,7 @@ loader:{
   
         <Button  style={styles.btn}  mode="contained" 
   
-  theme={{ roundness: 35,  colors:{primary:"red"}}}
+  theme={{ roundness: 35,  colors:{primary:"#6C63FF"}}}
   
   
   onPress={handleCl}>

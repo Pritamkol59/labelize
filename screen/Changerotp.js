@@ -89,7 +89,7 @@ import Login from './Login';
         <View style={styles.loader}>
   
   
-  <ActivityIndicator size="large" color="red"/>
+  <ActivityIndicator size="large" color="#6C63FF"/>
         </View>
   
   
@@ -130,7 +130,7 @@ import Login from './Login';
 <View style={styles.loader}>
   
   
-  <ActivityIndicator size="large" color="red"/>
+  <ActivityIndicator size="large" color="#6C63FF"/>
         </View>
               
             </View>

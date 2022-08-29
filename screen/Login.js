@@ -10,7 +10,8 @@ import Svg, { Ellipse } from "react-native-svg";
 import { useNavigation } from '@react-navigation/native';
 import { api } from './Constances';
 
-
+const windowWidth = Dimensions.get('window').width;
+const windowHeight = Dimensions.get('window').height;
 
 
 function PhoneSignIn() {
@@ -76,7 +77,7 @@ function PhoneSignIn() {
     container: {
       flex: 1,
      
-      
+      height:windowHeight,
      
       backgroundColor: "rgba(255,255,255,1)"
     },
@@ -292,7 +293,7 @@ catch(e){
       <View style={styles.loader}>
 
 
-<ActivityIndicator size="large" color="red"/>
+<ActivityIndicator size="large" color="#6C63FF"/>
       </View>
 
 
@@ -329,24 +330,14 @@ catch(e){
             <Ellipse
               stroke="rgba(230, 230, 230,1)"
               strokeWidth={4}
-              fill="rgba(255,0,54,1)"
+              fill="#6C63FF"
               cx={129}
               cy={126}
               rx={129}
               ry={126}
             ></Ellipse>
           </Svg>
-          <Svg viewBox="0 0 80.41 82.37" style={styles.ellipse2}>
-            <Ellipse
-              stroke="rgba(230, 230, 230,1)"
-              strokeWidth={4}
-              fill="rgba(255,0,54,1)"
-              cx={40}
-              cy={41}
-              rx={40}
-              ry={41}
-            ></Ellipse>
-          </Svg>
+         
         </View>
         <Text style={styles.welcomeBack}>Welcome Back</Text>
         <Image
@@ -362,7 +353,7 @@ catch(e){
           mode='outlined'
           style={styles.placeholder}
          
-          theme={{ roundness: 35, colors:{primary:"red"}}} 
+          theme={{ roundness: 35, colors:{primary:"#6C63FF"}}} 
   
           keyboardType="numeric"
   
@@ -379,7 +370,7 @@ catch(e){
   
   <Button  style={styles.btn}  mode="contained" 
   
-  theme={{ roundness: 35,  colors:{primary:"red"}}}
+  theme={{ roundness: 35,  colors:{primary:"#6C63FF"}}}
   
   
   onPress={handleClick}>

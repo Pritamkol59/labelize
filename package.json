@@ -31,6 +31,7 @@
     "react-native-countdown-text": "^1.0.5",
     "react-native-fast-image": "^8.5.11",
     "react-native-fieldset": "^1.0.3",
+    "react-native-floating-action-menu": "^1.2.4",
     "react-native-fontawesome": "^7.0.0",
     "react-native-image-crop-picker": "^0.38.0",
     "react-native-image-picker": "^4.8.4",
