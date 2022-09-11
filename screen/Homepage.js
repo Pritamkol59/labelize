@@ -14,6 +14,7 @@ const windowWidth = Dimensions.get('window').width;
 const windowHeight = Dimensions.get('window').height;
 
 import FieldSet from 'react-native-fieldset';
+import Video from 'react-native-video';
  function Homepage (){
 
 
@@ -376,6 +377,8 @@ onPress={handleCl}>
 
     },
 
+
+   
     
 
     
@@ -395,7 +398,7 @@ onPress={handleCl}>
       <View style={styles.loader}>
 
 
-<ActivityIndicator size="large" color="red"/>
+<ActivityIndicator size="large" color="#6C63FF"/>
       </View>
 
 
@@ -407,9 +410,11 @@ onPress={handleCl}>
 
     return (
 
-      <>
+      
+
+<View style={styles.cont}>
       <ScrollView>
-      <View style={styles.cont}>
+      
 
 <View>
 
@@ -535,8 +540,7 @@ onPress={handleCl}>
 </View>
 
 
-<Text>Google Video Ads Loding..</Text>
-
+<Text>Video</Text>
 
 
 
@@ -554,12 +558,14 @@ onPress={handleCl}>
 
 
 
-      </View>
+      
 
 
      
 
       </ScrollView>
+
+     
 
 
       <View style={styles.footer}>
@@ -568,7 +574,9 @@ onPress={handleCl}>
      
       </View>
 
-      </>
+      </View>
+
+      
     
 
 

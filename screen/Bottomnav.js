@@ -37,9 +37,14 @@ const MyTabs = () => {
 
         },
 
-        holder:{
+        image_imageStyle:{
+            flexDirection:'row',
+            backgroundColor:'#7C50FE',
             width:'90%',
-            height:50,
+            justifyContent:'space-evenly',
+            borderRadius:40,
+            marginLeft:'5%',
+            marginRight:'5%',
 
         },
 
@@ -52,8 +57,8 @@ const MyTabs = () => {
 
         image:{
             marginTop:2,
-            height:40,
-            width:40
+            height:45,
+            width:45
         },
         IconBehave:{
 

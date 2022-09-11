@@ -189,6 +189,7 @@ const [counter, setCounter] = React.useState(30);
     container: {
       flex: 1,
 
+      width:windowWidth,
       height:windowHeight,
       backgroundColor: "rgba(255,255,255,1)"
     },
@@ -450,9 +451,11 @@ loader:{
   else{
 
     return (
-      <ScrollView>
+      
         
   <View style={styles.container}>
+
+<ScrollView>
   <KeyboardAvoidingView behavior='position'>
         <Image
           source={require('../srcf/login.png')}
@@ -507,9 +510,11 @@ loader:{
    
   <Text style={styles.enterYour}>{mssg}</Text>
     
-      </View>
+      
   
       </ScrollView>
+
+      </View>
     );
 
 

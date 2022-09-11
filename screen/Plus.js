@@ -72,7 +72,7 @@ height: 50,
     marginLeft: '20%',
     marginRight: '20%',
     alignItems:'center',
-    fontSize:18
+    fontSize:15
 
   },
 
