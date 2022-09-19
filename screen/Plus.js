@@ -76,6 +76,26 @@ height: 50,
 
   },
 
+  imgtop10:{
+
+    marginTop:0,
+        
+    height: 100,
+    
+    width:windowWidth,
+   
+    
+        
+      },
+
+      imagex:{
+        height:20,
+        width:30,
+        marginTop:'3%',
+        marginLeft:30
+      },
+
+
     });
 
 
@@ -83,6 +103,26 @@ height: 50,
 
         <View style={styles.body}>
 
+<ImageBackground
+        style={styles.imgtop10}
+        imageStyle={styles.imageStyle1}
+        source={require("../srcf/Gradient_XrvkRkC.png")}
+
+      >
+         
+         <TouchableOpacity  onPress={() =>navigation.push('Freecard')}>
+
+<Image
+source={require('../srcf/back.png')}
+resizeMode="cover"
+style={styles.imagex}
+></Image>
+
+</TouchableOpacity>
+
+
+        <Text style={styles.textmenuupper}> Please Select A Option</Text>
+      </ImageBackground>
 
 
 

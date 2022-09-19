@@ -1,6 +1,3 @@
-
-
-
 import React, {Component, useEffect,useState,useCallback } from 'react'
 import { Text, View,Linking,BackHandler, Alert,StyleSheet,Image ,Dimensions ,ImageBackground,TextInput, ScrollView, KeyboardAvoidingView,TouchableOpacity,ActivityIndicator, FlatList} from 'react-native'
 import { Button } from 'react-native-paper';
@@ -14,10 +11,11 @@ const windowHeight = Dimensions.get('window').height;
 import Pdf from 'react-native-pdf';
 
 import * as OpenAnything from 'react-native-openanything';
-
+import Icon from 'react-native-vector-icons/AntDesign';
 
 
   import { api } from './Constances';
+
 
 
 export default class Freecard extends Component {
@@ -86,91 +84,60 @@ export default class Freecard extends Component {
 
   }
 
-  
-  renerItem=({item})=>{
 
-    
-   
+  Uppermenu=()=>{
+
+    const navigation = useNavigation();
+
     return(
-    
-      <View>
-                
-                <ImageBackground
-              style={styles.card1}
-              imageStyle={styles.card2}
-              source={require("../srcf/gradient.png")}
-            >
-              <View style={styles.imgwithcard}>
-    
-    
-               
-              <Image
-    source={{uri: item.cardsource}}
-    resizeMode="cover"
-    style={styles.imagex}
-    ></Image>
-                
-                
-                <Text style={styles.textcard}>Name:- {item.cname}</Text>
-    
-                </View>
-                <Text style={styles.textcard1}>Phone No:- {item.cno}  </Text>
-                
-                 
-                 
-                 
-                 
-                 </ImageBackground>
-    
-    
-                 <View style={styles.imgbutton}>
-    
-                 <TouchableOpacity>
-    
-            <ImageBackground
-              style={styles.cardbutton}
-              imageStyle={styles.cardbuttonStyle}
-              source={require("../srcf/Gradient_XrvkRkC.png")}
-            >
-              <Text style={styles.buttoncardtext}>Edit</Text>
-            </ImageBackground>
-    
-            </TouchableOpacity>
 
-                 <TouchableOpacity  onPress={()=> this.destroy(item) } >
-    
-            <ImageBackground
-              style={styles.cardbutton}
-              imageStyle={styles.cardbuttonStyle}
-              source={require("../srcf/Gradient_XrvkRkC.png")}
-            >
-              <Text style={styles.buttoncardtext}>Delete</Text>
-            </ImageBackground>
-    
-            </TouchableOpacity>
-    
-            <TouchableOpacity onPress={()=> this.Fetchs(item) }>
-            <ImageBackground
-              style={styles.cardbutton}
-              imageStyle={styles.cardbuttonStyle}
-              source={require("../srcf/redg.png")}
-            >
-              <Text style={styles.buttoncardtext}>Print</Text>
-            </ImageBackground>
-    
-            </TouchableOpacity>
-    
-    
-                 
-    
-                 </View>
 
-                
-               
-              </View>
+      <View style={styles.upermenu}>
+
+      <TouchableOpacity onPress={() =>navigation.push('Homepage')}>
+
+    <ImageBackground
+      style={styles.imgtop1}
+      imageStyle={styles.imageStyle}
+      source={require("../srcf/Gradient_XrvkRkC.png")}
+    >
+      <Text style={styles.textmenuupper1}> <Icon name="arrowleft" size={30} color="#fff" /></Text>
+    </ImageBackground>
+
+    </TouchableOpacity>
+
+      <TouchableOpacity onPress={() =>navigation.push('Freecard')}>
+
+    <ImageBackground
+      style={styles.imgtop1}
+      imageStyle={styles.imageStyle}
+      source={require("../srcf/Gradient_XrvkRkC.png")}
+    >
+      <Text style={styles.textmenuupper}>Single Card</Text>
+    </ImageBackground>
+
+    </TouchableOpacity>
+
+
+
+      <TouchableOpacity onPress={() =>navigation.push('Savefreelink')}>
+
+    <ImageBackground
+      style={styles.imgtop1}
+      imageStyle={styles.imageStyle}
+      source={require("../srcf/Gradient_XrvkRkC.png")}
+    >
+      <Text style={styles.textmenuupper}>Save Link</Text>
+    </ImageBackground>
+
+    </TouchableOpacity>
+
+</View>
     )
-    
-    }
+  }
+
+  
+  
 
     Fetchs= async(item) =>{
 
@@ -389,97 +356,175 @@ export default class Freecard extends Component {
     }
 
 
+    main=()=>{
+      const navigation = useNavigation();
+
+
+    const  renerItem=({item})=>{
+
+   
+
+   
+        return(
+        
+          <View>
+                    
+                    <ImageBackground
+                  style={styles.card1}
+                  imageStyle={styles.card2}
+                  source={require("../srcf/gradient.png")}
+                >
+                  <View style={styles.imgwithcard}>
+        
+        
+                   
+                  <Image
+        source={{uri: item.cardsource}}
+        resizeMode="cover"
+        style={styles.imagex}
+        ></Image>
+                    
+                    
+                    <Text style={styles.textcard}>Name:- {item.cname}</Text>
+        
+                    </View>
+                    <Text style={styles.textcard1}>Phone No:- {item.cno}  </Text>
+                    
+                     
+                     
+                     
+                     
+                     </ImageBackground>
+        
+        
+                     <View style={styles.imgbutton}>
+        
+                     <TouchableOpacity onPress={() =>navigation.push('EditFreeCard',{paramKey: item.cno,})}>
+        
+                <ImageBackground
+                  style={styles.cardbutton}
+                  imageStyle={styles.cardbuttonStyle}
+                  source={require("../srcf/Gradient_XrvkRkC.png")}
+                >
+                  <Text style={styles.buttoncardtext}>Edit</Text>
+                </ImageBackground>
+        
+                </TouchableOpacity>
+    
+                     <TouchableOpacity  onPress={()=> this.destroy(item) } >
+        
+                <ImageBackground
+                  style={styles.cardbutton}
+                  imageStyle={styles.cardbuttonStyle}
+                  source={require("../srcf/Gradient_XrvkRkC.png")}
+                >
+                  <Text style={styles.buttoncardtext}>Delete</Text>
+                </ImageBackground>
+        
+                </TouchableOpacity>
+        
+                <TouchableOpacity onPress={()=> this.Fetchs(item) }>
+                <ImageBackground
+                  style={styles.cardbutton}
+                  imageStyle={styles.cardbuttonStyle}
+                  source={require("../srcf/redg.png")}
+                >
+                  <Text style={styles.buttoncardtext}>Print</Text>
+                </ImageBackground>
+        
+                </TouchableOpacity>
+        
+        
+                     
+        
+                     </View>
+    
+                    
+                   
+                  </View>
+        )
+        
+        }
+
+
+
+
+
+
+
+
+      return(
+
+        <View style={styles.body}>
+    
+       
+        
+    
+        <FlatList
+    
+        style={styles.fatlist}
+    
+        data={this.state.data}
+    
+        renderItem={renerItem}
+    
+        keyExtractor={(item,index)=> index.toString()}
+    
+        onEndReached= {this.HandelLoadMore}
+    
+        
+    
+        
+    
+    
+    
+    
+        />
+    
+    <View style={styles.invisblecard}>
+    
+    
+    
+    </View>
+     
+    
+   
+    
+    </View>
+    
+      )
+
+    }
+
+
   
 
 render(){
   
-   return(
-
-    <View style={styles.body}>
-
-    <View style={styles.upermenu}>
-
-      <TouchableOpacity>
-
-    <ImageBackground
-      style={styles.imgtop1}
-      imageStyle={styles.imageStyle}
-      source={require("../srcf/Gradient_XrvkRkC.png")}
-    >
-      <Text style={styles.textmenuupper}>Single Card</Text>
-    </ImageBackground>
-
-    </TouchableOpacity>
-
-      <TouchableOpacity>
-
-    <ImageBackground
-      style={styles.imgtop1}
-      imageStyle={styles.imageStyle}
-      source={require("../srcf/Gradient_XrvkRkC.png")}
-    >
-      <Text style={styles.textmenuupper}>Group Card</Text>
-    </ImageBackground>
-
-    </TouchableOpacity>
+  return(
 
 
+<>
 
-      <TouchableOpacity>
+<this.Uppermenu/>
 
-    <ImageBackground
-      style={styles.imgtop1}
-      imageStyle={styles.imageStyle}
-      source={require("../srcf/Gradient_XrvkRkC.png")}
-    >
-      <Text style={styles.textmenuupper}>Save Link</Text>
-    </ImageBackground>
+<this.main/>
 
-    </TouchableOpacity>
-
-</View>
- 
-
-    <FlatList
-
-    style={styles.fatlist}
-
-    data={this.state.data}
-
-    renderItem={this.renerItem}
-
-    keyExtractor={(item,index)=> index.toString()}
-
-    onEndReached= {this.HandelLoadMore}
-
-    
-
-    
-
-
-
-
-    />
-
-<View style={styles.invisblecard}>
-
-
-
-</View>
- 
 
 <this.Plus/>
+    
+    
+    <View style={styles.footer}>
+    
+    <MyTabs/>
+   
+    </View>
 
+    </>
 
-      <View style={styles.footer}>
-      
-      <MyTabs/>
-     
-      </View>
-
-</View>
 
   )
+   
 
 
 }
@@ -584,6 +629,15 @@ height: 150,
     marginTop: 12,
     marginLeft: '20%',
     marginRight:'20%',
+    alignItems:'center',
+
+  },
+  textmenuupper1:{
+
+    color: "rgba(255,255,255,1)",
+    marginTop: 10,
+    marginLeft: '25%',
+    marginRight:'25%',
     alignItems:'center',
 
   },

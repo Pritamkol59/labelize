@@ -30,6 +30,7 @@
     "react-native-axios": "^0.17.1",
     "react-native-blob-util": "^0.16.2",
     "react-native-countdown-text": "^1.0.5",
+    "react-native-element-dropdown": "^2.3.0",
     "react-native-fast-image": "^8.5.11",
     "react-native-fieldset": "^1.0.3",
     "react-native-floating-action-menu": "^1.2.4",

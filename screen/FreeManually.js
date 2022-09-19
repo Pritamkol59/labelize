@@ -9,6 +9,7 @@ const windowHeight = Dimensions.get('window').height;
 
 import AsyncStorage from '@react-native-async-storage/async-storage';
 
+
 import { api } from './Constances';
 
 
@@ -30,7 +31,19 @@ function FreeManually (){
     
     const [cphn, setcphn] = useState('');
 
-    const [cadd, setcadd] = useState('');
+    const [cadd1, setcadd1] = useState('');
+    const [cadd2, setcadd2] = useState('');
+    const [dist, setdist] = useState('');
+    const [st, setst] = useState('');
+    const [pin, setpin] = useState('');
+
+    const [careoff, setcareoff] = useState('');
+    const [ps, setps] = useState('');
+    const [po, setpo] = useState('');
+    const [landmark, setlandmark] = useState('');
+
+
+
 
 
   
@@ -85,7 +98,7 @@ setIscardsource('https://lableiz.com/public/storage/frc/temp5.png');
   const saves = async() =>{
 
 
-    if(cname!=='' && cphn!=='' && cadd!==''){
+    if(cname!=='' && cphn!=='' && cadd1!==''&& ps!==''&& po!==''&& dist!==''&& st!==''&& pin!==''){
 
 
       
@@ -95,7 +108,7 @@ setIscardsource('https://lableiz.com/public/storage/frc/temp5.png');
 
       console.log(cname);
       console.log(cphn);
-      console.log(cadd);
+      console.log(cadd1);
       console.log(numbed);
       console.log(SelectCard);
     
@@ -119,8 +132,16 @@ setIscardsource('https://lableiz.com/public/storage/frc/temp5.png');
               body:JSON.stringify({
                 "num":numbed,
                 "cname":cname,
+                "careoff":careoff,
                 "cphn":cphn,
-                "cadd":cadd,
+                "cadd1":cadd1,
+                "cadd2":cadd2,
+                "ps":ps,
+                "po":po,
+                "dist":dist,
+                "st":st,
+                "pin":pin,
+                "landmark":landmark,
                 "cardsource":cardsource,
                 "card":SelectCard,
                 
@@ -138,7 +159,13 @@ setIscardsource('https://lableiz.com/public/storage/frc/temp5.png');
               if(myData.success===true){
                 
 
-                alert("Data save SuccessFully");
+                //alert("Data save SuccessFully");
+
+              const ff= JSON.stringify(myData.data);
+
+
+                alert(ff);
+
               
                 
                // navigation.push('Freecard');
@@ -166,7 +193,7 @@ setIscardsource('https://lableiz.com/public/storage/frc/temp5.png');
     
     else{
 
-      alert("all fields are required");
+      alert("all  * fields are required");
     }
 
 
@@ -175,171 +202,171 @@ setIscardsource('https://lableiz.com/public/storage/frc/temp5.png');
 
   const styles = StyleSheet.create({
 
-      body:{
+    body:{
 
-          backgroundColor:"#313131",
-      width:windowWidth,
-      height:windowHeight,
+        backgroundColor:"#313131",
+    width:windowWidth,
+    height:windowHeight,
 
-      },
+    },
 
 
-      imgtop1:{
+    imgtop1:{
 
-          marginTop:20,
-              
-          height: 200,
-          
-          width:windowWidth,
-         
-          
-              
-            },
-
-      imgtop10:{
-
-          marginTop:0,
-              
-          height: 100,
-          
-          width:windowWidth,
-         
-          
-              
-            },
-          
-            imgs:{
-          
-             
-             
-              height:200,
-              width:windowWidth,
-            },
-          
-             imgtop2:{
-          
-          marginTop:20,
-          height: 200,
-          
-          width:windowWidth,
-          
-              
-            },
-
-      footer:{
-
-    alignItems:"center",
-           marginTop: windowHeight-70,
-           position:'absolute',
- 
+        marginTop:20,
+            
+        height: 200,
+        
+        width:windowWidth,
+       
+        
+            
           },
 
-        
+    imgtop10:{
 
-            textmenuupper:{
-
-              color: "rgba(255,255,255,1)",
-              marginTop: 20,
-              marginLeft: 50,
-              alignItems:'center',
-              fontSize:20
-      
-            },
-
-            imagex:{
-              height:20,
-              width:30,
-              marginTop:'3%',
-              marginLeft:30
-            },
-
-            tick:{
-              height:50,
-              width:100,
-              marginLeft:'39%',
-              marginRight:'50%',
-              marginTop:'6%',
-              
-            },
-
-
-            imgtopc:{
-
-              marginTop:55,
-              
-              height: windowHeight-300,
-              
-              width:windowWidth,
-              borderWidth: 1,
-    borderColor: "#000000",
-    borderRadius: 10,
-    overflow: "hidden"
-
-
-            },
-
-
-            form:{
-             
-        
-        alignItems:"center",
-
-
-
-            },
+        marginTop:0,
             
-            forms:{
-
-              color: "rgba(255,255,255,1)",
-              marginTop: 20,
-              
-              
-              fontSize:20
-      
-            },
-
-            placeholder: {
-      
-     
-      
-      
-              marginTop: 20,
-              marginLeft: 18,
-              marginRight:18,
-              //backgroundColor:'#6C63FF',
-              backgroundColor:'#fcfc',
-              
-
-            },
-
-            textare:{
-
-              marginTop: 20,
-              marginLeft: 18,
-              marginRight:18,
-              //backgroundColor:'#6C63FF',
-              backgroundColor:'#fcfc',
-
-              height:windowHeight-510
-            },
-
-
-            loader:{
-
-              minHeight:"100%",
-              backgroundColor:'transparent',
-              display:"flex",
-              justifyContent:"center",
-              alignItems:"center",
-         
-             }
-
+        height: 100,
+        
+        width:windowWidth,
+       
+        
+            
+          },
+        
+          imgs:{
+        
            
+           
+            height:200,
+            width:windowWidth,
+          },
+        
+           imgtop2:{
+        
+        marginTop:20,
+        height: 200,
+        
+        width:windowWidth,
+        
+            
+          },
+
+    footer:{
+
+  alignItems:"center",
+         marginTop: windowHeight-70,
+         position:'absolute',
+
+        },
+
+      
+
+          textmenuupper:{
+
+            color: "rgba(255,255,255,1)",
+            marginTop: 20,
+            marginLeft: 50,
+            alignItems:'center',
+            fontSize:20
+    
+          },
+
+          imagex:{
+            height:20,
+            width:30,
+            marginTop:'3%',
+            marginLeft:30
+          },
+
+          tick:{
+            height:50,
+            width:100,
+            marginLeft:'39%',
+            marginRight:'50%',
+            marginTop:'6%',
+            
+          },
+
+
+          imgtopc:{
+
+            marginTop:10,
+            
+            
+            
+            width:windowWidth,
+            borderWidth: 1,
+  borderColor: "#000000",
+  borderRadius: 10,
+  overflow: "hidden"
+
+
+          },
+
+
+          space:{
+
+            marginTop:50,
+
+            height: windowHeight-700,
+
+          },
+
+
+          form:{
+           
+      
+      alignItems:"center",
+
+
+
+          },
+          
+          forms:{
+
+            color: "rgba(255,255,255,1)",
+            marginTop: 20,
+            
+            
+            fontSize:20
+    
+          },
+
+          placeholder: {
+    
+   
+    
+    
+            marginTop: 20,
+            marginLeft: 18,
+            marginRight:18,
+            //backgroundColor:'#6C63FF',
+            backgroundColor:'#fcfc',
+            
+
+          },
+
+         
+
+
+          loader:{
+
+            minHeight:"100%",
+            backgroundColor:'transparent',
+            display:"flex",
+            justifyContent:"center",
+            alignItems:"center",
+       
+           }
+
+         
 
 
 
 
-  });
+});
 
 
   if(isLoad){
@@ -363,7 +390,7 @@ setIscardsource('https://lableiz.com/public/storage/frc/temp5.png');
       <View style={styles.body}> 
       
 
-      <KeyboardAvoidingView behavior='position'>
+      
       <ImageBackground
         style={styles.imgtop10}
         imageStyle={styles.imageStyle1}
@@ -410,61 +437,215 @@ style={styles.imagex}
          
          
 
-         <TextInput
-            label="Customer Name"
-            placeholder=''
             
-            mode='outlined'
-            style={styles.placeholder}
-           
-            onChangeText={setcname}
+  
+  <TextInput
+     label="Customer Full Name *"
+     placeholder=''
+     
+     mode='outlined'
+     style={styles.placeholder}
+    
+     onChangeText={setcname}
+     maxLength={40}
 
-        value={cname}
-           
-            theme={{ roundness: 35,  colors:{text:'black',primary:"white"}}} 
-            
+ value={cname}
+    
+     theme={{ roundness: 35,  colors:{text:'black',primary:"white"}}} 
+     
 
-        ></TextInput>
-
-
-         <TextInput
-            label="Customer Phone"
-            placeholder=''
-            
-            mode='outlined'
-            style={styles.placeholder}
-
-            keyboardType="numeric"
-            maxLength={10}
-           
-            onChangeText={setcphn}
-
-        value={cphn}
-           
-            theme={{ roundness: 35,  colors:{text:'black',primary:"white"}}} 
-            
-
-        ></TextInput>
+ ></TextInput>
 
 
-         <TextInput
-            label="Customer's Address"
-            placeholder=''
-            multiline
-            
-            mode='outlined'
-            style={styles.textare}
-           
-            onChangeText={setcadd}
+  <TextInput
+     label="Careoff(C/O)"
+     placeholder=''
+     
+     mode='outlined'
+     style={styles.placeholder}
 
-            maxLength={200}
+     maxLength={40}
+    
+     onChangeText={setcareoff}
 
-        value={cadd}
-           
-            theme={{ roundness: 35,  colors:{text:'black',primary:"white"}}} 
-            
+ value={careoff}
+    
+     theme={{ roundness: 35,  colors:{text:'black',primary:"white"}}} 
+     
 
-        ></TextInput>
+ ></TextInput>
+
+
+
+  <TextInput
+     label="Customer Phone *"
+     placeholder=''
+     
+     mode='outlined'
+     style={styles.placeholder}
+
+     keyboardType="numeric"
+     maxLength={10}
+    
+     onChangeText={setcphn}
+
+ value={cphn}
+    
+     theme={{ roundness: 35,  colors:{text:'black',primary:"white"}}} 
+     
+
+ ></TextInput>
+
+
+<TextInput
+     label="Address 1 *"
+     placeholder=''
+     
+     mode='outlined'
+     style={styles.placeholder}
+    
+     onChangeText={setcadd1}
+
+     maxLength={43}
+
+ value={cadd1}
+    
+     theme={{ roundness: 35,  colors:{text:'black',primary:"white"}}} 
+     
+
+ ></TextInput>
+<TextInput
+     label="Address 2"
+     placeholder=''
+     
+     mode='outlined'
+     style={styles.placeholder}
+    
+     onChangeText={setcadd2}
+
+     maxLength={40}
+
+ value={cadd2}
+    
+     theme={{ roundness: 35,  colors:{text:'black',primary:"white"}}} 
+     
+
+ ></TextInput>
+
+
+<TextInput
+     label="Police Station *"
+     placeholder=''
+     
+     mode='outlined'
+     style={styles.placeholder}
+    
+     onChangeText={setps}
+
+     maxLength={40}
+
+ value={ps}
+    
+     theme={{ roundness: 35,  colors:{text:'black',primary:"white"}}} 
+     
+
+ ></TextInput>
+
+<TextInput
+     label="Post Office *"
+     placeholder=''
+     
+     mode='outlined'
+     style={styles.placeholder}
+    
+     onChangeText={setpo}
+
+     maxLength={40}
+
+ value={po}
+    
+     theme={{ roundness: 35,  colors:{text:'black',primary:"white"}}} 
+     
+
+ ></TextInput>
+
+<TextInput
+     label="District *"
+     placeholder=''
+     
+     mode='outlined'
+     style={styles.placeholder}
+    
+     onChangeText={setdist}
+
+     maxLength={40}
+
+ value={dist}
+    
+     theme={{ roundness: 35,  colors:{text:'black',primary:"white"}}} 
+     
+
+ ></TextInput>
+
+<TextInput
+     label="State *"
+     placeholder=''
+     
+     mode='outlined'
+     style={styles.placeholder}
+    
+     onChangeText={setst}
+
+     maxLength={40}
+
+ value={st}
+    
+     theme={{ roundness: 35,  colors:{text:'black',primary:"white"}}} 
+     
+
+ ></TextInput>
+
+
+<TextInput
+     label="Pin *"
+     placeholder=''
+     
+     mode='outlined'
+
+     keyboardType="numeric"
+     style={styles.placeholder}
+    
+     onChangeText={setpin}
+
+     maxLength={25}
+
+ value={pin}
+    
+     theme={{ roundness: 35,  colors:{text:'black',primary:"white"}}} 
+     
+
+ ></TextInput>
+  
+
+  <TextInput
+     label="LandMark "
+     placeholder=''
+     
+     mode='outlined'
+     style={styles.placeholder}
+    
+     onChangeText={setlandmark}
+
+     maxLength={40}
+
+ value={landmark}
+    
+     theme={{ roundness: 35,  colors:{text:'black',primary:"white"}}} 
+     
+
+ ></TextInput>
+
+
 
 
 
@@ -486,9 +667,12 @@ style={styles.tick}
 
 </TouchableOpacity>
 
+<View style={styles.space}>
 
+
+  </View>
       </ScrollView>
-      </KeyboardAvoidingView>
+      
 
       <View style={styles.footer}>
     

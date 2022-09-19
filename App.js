@@ -38,6 +38,8 @@ import Freecard from './screen/Freecard';
 import Plus from './screen/Plus';
 import FreeManually from './screen/FreeManually';
 import FreeLink from './screen/FreeLink';
+import Savefreelink from './screen/Savefreelink';
+import EditFreeCard from './screen/EditFreeCard';
 
 
 
@@ -67,6 +69,8 @@ const Navigation =()=> {
 
         <Stack.Screen name="FreeManually" component={FreeManually} options={{headerShown:false}} />
         <Stack.Screen name="FreeLink" component={FreeLink} options={{headerShown:false}} />
+        <Stack.Screen name="Savefreelink" component={Savefreelink} options={{headerShown:false}} />
+        <Stack.Screen name="EditFreeCard" component={EditFreeCard} options={{headerShown:false}} />
 
         
         
