@@ -15,7 +15,7 @@ function Plus (){
         body:{
             backgroundColor:"#313131",
             width:windowWidth,
-            height:windowHeight,
+            height:'100%',
     
           },
 

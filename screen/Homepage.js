@@ -253,7 +253,7 @@ onPress={handleCl}>
      cont: {
       
       backgroundColor:"#313131",
-      height:windowHeight,
+      height:'100%',
      
     },
 
@@ -520,7 +520,7 @@ onPress={handleCl}>
 
 </TouchableOpacity>
 
-<TouchableOpacity >
+<TouchableOpacity  onPress={() =>navigation.push('Primium')}>
 
 <Image
          source={

@@ -38,7 +38,7 @@ export default function EditFreeCard({route}) {
 
     useEffect(()=>{
   
-     
+      setIsLoad(true);
       fetchUserData();
       
 
@@ -48,7 +48,7 @@ export default function EditFreeCard({route}) {
         const fetchUserData = async () => {
 
 
-          setIsLoad(true);
+          
 
           
 
@@ -296,7 +296,7 @@ export default function EditFreeCard({route}) {
         </ImageBackground>
 
 
-<TouchableOpacity>
+<TouchableOpacity onPress={()=>navigation.push('Changefreecards',{paramKey: cphn,})}>
 
 <ImageBackground
       style={styles.imgtopp}
@@ -321,7 +321,7 @@ export default function EditFreeCard({route}) {
         <ImageBackground
           style={styles.imgtopc}
           imageStyle={styles.imageStyle1}
-          source={require("../srcf/Gradient_XrvkRkC.png")}
+          source={require("../srcf/wbk.png")}
   
         >
            
@@ -534,7 +534,9 @@ export default function EditFreeCard({route}) {
  ></TextInput>
            
   
-  
+           <View style={styles.tv}>
+
+</View>
   
   
   
@@ -587,7 +589,7 @@ const styles = StyleSheet.create({
 
         backgroundColor:"#313131",
     width:windowWidth,
-    height:windowHeight,
+    height:'100%',
 
     },
 
@@ -642,7 +644,9 @@ const styles = StyleSheet.create({
             
           },
 
-        
+          tv:{
+            marginTop:10,
+          },
         
           imgs:{
         

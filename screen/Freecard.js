@@ -251,7 +251,7 @@ export default class Freecard extends Component {
 
            if(Url.success===true){
 
-            this.setState({data:[],Page:this.state.Page-1}, this.componentDidMount)
+            this.setState({data:[],Page:1}, this.componentDidMount)
 
            }
 
@@ -358,9 +358,37 @@ export default class Freecard extends Component {
 
     main=()=>{
       const navigation = useNavigation();
+      
+     // const[tempData, settempData]= useState([]);
+      
+      const OnSelect=ind=>{
 
+        const temp=[];
 
-    const  renerItem=({item})=>{
+        this.state.data.map((item,index)=>{
+
+          if(index==ind){
+            
+           temp.push(true);
+           console.log('this is true Select:',item);
+
+          }
+          else{
+            
+
+            temp.push(false);
+            console.log('this is false Select:',item);
+          }
+        });
+
+        settempData(temp);
+
+        console.log(tempData);
+      }
+
+     
+
+    const  renerItem=({item , index})=>{
 
    
 
@@ -368,11 +396,12 @@ export default class Freecard extends Component {
         return(
         
           <View>
-                    
+                    <TouchableOpacity>
+
                     <ImageBackground
                   style={styles.card1}
                   imageStyle={styles.card2}
-                  source={require("../srcf/gradient.png")}
+                  source={item==true?require("../srcf/Gradient_XrvkRkC.png"):require("../srcf/gradient.png")}
                 >
                   <View style={styles.imgwithcard}>
         
@@ -390,12 +419,12 @@ export default class Freecard extends Component {
                     </View>
                     <Text style={styles.textcard1}>Phone No:- {item.cno}  </Text>
                     
-                     
+                   
                      
                      
                      
                      </ImageBackground>
-        
+                     </TouchableOpacity>
         
                      <View style={styles.imgbutton}>
         
@@ -536,7 +565,7 @@ const styles = StyleSheet.create({
   body:{
     backgroundColor:"#313131",
     width:windowWidth,
-    height:windowHeight,
+    height:'100%',
 
   },
 
@@ -668,7 +697,7 @@ height: 150,
     fontSize:15,
     marginTop:'15%',
 
-    marginLeft:'25%',
+    marginLeft:'35%',
     position:'absolute',
     
   },
@@ -693,11 +722,12 @@ height: 150,
   imagex:{
 
     marginTop:'5%',
-    width: 55,
-  height: 55,
-  borderRadius: 100,
+    width: 80,
+  height: 80,
+
+  /*borderRadius: 100,
   borderWidth: 1,
-  borderColor: "#000000",
+  borderColor: "#000000",*/
 
   },
 
@@ -706,7 +736,7 @@ height: 150,
     marginTop:'5%',
     marginLeft:'30%',
     marginRight:'30%',
-    fontSize:18,
+    fontSize:16,
     color:'white',
   },
 

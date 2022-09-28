@@ -9,7 +9,7 @@
 import React, { Component } from 'react';
 
 import {
-  SafeAreaView,
+  
   ScrollView,
   StatusBar,
   StyleSheet,
@@ -17,6 +17,7 @@ import {
   Text,
   useColorScheme,
   View,
+  Dimensions,
 } from 'react-native';
 import GifImage from '@lowkey/react-native-gif';
 
@@ -24,8 +25,10 @@ import NetInfo from "@react-native-community/netinfo";
 
 import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
+import FullScreenChz from 'react-native-fullscreen-chz';
 
-
+const windowWidth = Dimensions.get('window').width;
+const windowHeight = Dimensions.get('window').height;
 
 import Login from './screen/Login';
 import Splash from './screen/Splash';
@@ -40,9 +43,10 @@ import FreeManually from './screen/FreeManually';
 import FreeLink from './screen/FreeLink';
 import Savefreelink from './screen/Savefreelink';
 import EditFreeCard from './screen/EditFreeCard';
-
-
-
+import Changefreecards from './screen/Changefreecards';
+import Primium from './screen/Primium';
+import Primiumcard from './screen/Primiumcard';
+import Pcardviw from './screen/Pcardviw';
 
 
 
@@ -53,7 +57,7 @@ const Stack = createNativeStackNavigator();
 const Navigation =()=> {
 
   
-
+  FullScreenChz.enable();
 
   return (
     <NavigationContainer>
@@ -71,6 +75,10 @@ const Navigation =()=> {
         <Stack.Screen name="FreeLink" component={FreeLink} options={{headerShown:false}} />
         <Stack.Screen name="Savefreelink" component={Savefreelink} options={{headerShown:false}} />
         <Stack.Screen name="EditFreeCard" component={EditFreeCard} options={{headerShown:false}} />
+        <Stack.Screen name="Changefreecards" component={Changefreecards} options={{headerShown:false}} />
+        <Stack.Screen name="Primium" component={Primium} options={{headerShown:false}} />
+        <Stack.Screen name="Primiumcard" component={Primiumcard} options={{headerShown:false}} />
+        <Stack.Screen name="Pcardviw" component={Pcardviw} options={{headerShown:false}} />
 
         
         
@@ -145,6 +153,8 @@ Chack_Internet=()=>{
      
        flex:1,
        backgroundColor:"white",
+       height:'100%',
+       width:windowWidth,
        
        
       },
@@ -181,6 +191,7 @@ Chack_Internet=()=>{
       return (
         <>
           <StatusBar hidden={true} />
+          
     
           <View style={styles.container}>
             <Navigation/>
