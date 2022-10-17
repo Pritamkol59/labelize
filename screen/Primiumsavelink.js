@@ -1,5 +1,5 @@
 import React, {Component, useEffect,useState,useCallback } from 'react'
-import { Text, View,Linking,BackHandler, Alert,StyleSheet,Image ,Dimensions ,ImageBackground,TextInput, ScrollView, KeyboardAvoidingView,TouchableOpacity,ActivityIndicator, FlatList} from 'react-native'
+import {Text, View,Linking,BackHandler, Alert,StyleSheet,Image ,Dimensions ,ImageBackground,TextInput, ScrollView, KeyboardAvoidingView,TouchableOpacity,ActivityIndicator, FlatList} from 'react-native'
 import { Button } from 'react-native-paper';
 import { useNavigation } from '@react-navigation/native';
 import AsyncStorage from '@react-native-async-storage/async-storage';
@@ -12,12 +12,11 @@ import Pdf from 'react-native-pdf';
 
 import * as OpenAnything from 'react-native-openanything';
 import Icon from 'react-native-vector-icons/AntDesign';
-
+import Share from 'react-native-share';
 
   import { api } from './Constances';
 
-
-export default class Pcardviw extends Component {
+export default class Primiumsavelink extends Component {
     constructor(props){
         super(props)
     
@@ -45,14 +44,14 @@ export default class Pcardviw extends Component {
     
           pluse:{
     
-            width: 65,
-            height: 65,
+            width: 55,
+            height: 55,
       },
       
       
           plusto:{
       
-            marginTop: windowHeight-240,
+            marginTop: windowHeight-180,
             marginLeft:'80%',
                position:'absolute',
       
@@ -67,7 +66,7 @@ export default class Pcardviw extends Component {
     
     
     
-          <TouchableOpacity onPress={() =>navigation.push('Primiumplus')}> 
+          <TouchableOpacity onPress={() =>navigation.push('Plus')}> 
           
           <Image
               source={require('../srcf/plus.png')}
@@ -93,7 +92,7 @@ export default class Pcardviw extends Component {
     
           <View style={styles.upermenu}>
     
-          <TouchableOpacity onPress={() =>navigation.push('Primiumcard')}>
+          <TouchableOpacity onPress={() =>navigation.push('Homepage')}>
     
         <ImageBackground
           style={styles.imgtop1}
@@ -138,74 +137,7 @@ export default class Pcardviw extends Component {
       
       
     
-        Fetchs= async(item) =>{
-    
-    
-          //console.log(item.cno);
-    
-          
-          const numbed= await AsyncStorage.getItem('number');
         
-          try{
-        
-            const tok = await AsyncStorage.getItem('token');
-            
-                    
-                     
-            const suparfresh= JSON.parse(tok); 
-        
-            const freshtoken= "Bearer "+suparfresh;
-         const tou= await  fetch(api+"genpdf",{ 
-            method:"POST",
-               headers:new Headers({
-                'Accept': 'application/json',
-                'Content-Type': 'application/json',
-                'Authorization': freshtoken
-              }),
-              body:JSON.stringify({
-                "num":numbed,
-                "id":item.id
-    
-                
-                
-                
-        
-              })
-            
-            });
-               const Url= await tou.json();
-    
-               console.log(Url);
-    
-               
-    
-               if(Url.success===true){
-    
-               /* Linking.canOpenURL(Url.data).then(supported => {
-                  if (supported) {
-                    Linking.openURL(Url.data);
-                  } else {
-                    console.log("Don't know how to open URI: " + Url.data);
-                  }
-                });*/
-    
-                OpenAnything.Pdf(Url.data);
-    
-            }
-    
-    
-    
-          }
-    
-    
-               catch(e){
-        
-                console.log(e);
-                }
-    
-                
-              
-              }
     
     
         destroy= async(item) =>{
@@ -213,7 +145,7 @@ export default class Pcardviw extends Component {
     
           //console.log(item.cno);
     
-          
+          //const navigation = useNavigation();
           
           const numbed= await AsyncStorage.getItem('number');
         
@@ -226,7 +158,7 @@ export default class Pcardviw extends Component {
             const suparfresh= JSON.parse(tok); 
         
             const freshtoken= "Bearer "+suparfresh;
-         const tou= await  fetch(api+"pcarddel",{ 
+         const tou= await  fetch(api+"freelinkdel",{ 
             method:"POST",
                headers:new Headers({
                 'Accept': 'application/json',
@@ -252,6 +184,8 @@ export default class Pcardviw extends Component {
     
                 this.setState({data:[],Page:1}, this.componentDidMount)
     
+              // navigation.push('Savefreelink');
+    
                }
     
     
@@ -269,6 +203,30 @@ export default class Pcardviw extends Component {
               }
     
     
+              share=async(item) =>{
+    
+            // console.log(item.link);
+    
+            const shareOptions ={
+    
+              title: 'Required Some informations',
+              message: 'Hi, Your Order is Ready for Dispatch Kindly Fill The Address Details in The Given Link ', // Note that according to the documentation at least one of "message" or "url" fields is required
+              url: item.link,
+              subject: 'Required Some informations'
+            }
+            try{
+              const ShareResponse= await Share.open(shareOptions);
+    
+    
+            }
+            catch(error){
+    
+              console.log('erreo:',error);
+            }
+             
+              }
+    
+    
          finds = async() =>{
     
           const numbed= await AsyncStorage.getItem('number');
@@ -282,7 +240,7 @@ export default class Pcardviw extends Component {
             const suparfresh= JSON.parse(tok);
         
             const freshtoken= "Bearer "+suparfresh;
-         const postUserData= await  fetch(api+"psavecard?page="+this.state.Page,{ 
+         const postUserData= await  fetch(api+"primiumlinkshow?page="+this.state.Page,{ 
             method:"POST",
                headers:new Headers({
                 'Accept': 'application/json',
@@ -357,37 +315,9 @@ export default class Pcardviw extends Component {
     
         main=()=>{
           const navigation = useNavigation();
-          
-         // const[tempData, settempData]= useState([]);
-          
-          const OnSelect=ind=>{
     
-            const temp=[];
     
-            this.state.data.map((item,index)=>{
-    
-              if(index==ind){
-                
-               temp.push(true);
-               console.log('this is true Select:',item);
-    
-              }
-              else{
-                
-    
-                temp.push(false);
-                console.log('this is false Select:',item);
-              }
-            });
-    
-            settempData(temp);
-    
-            console.log(tempData);
-          }
-    
-         
-    
-        const  renerItem=({item , index})=>{
+        const  renerItem=({item})=>{
     
        
     
@@ -395,72 +325,72 @@ export default class Pcardviw extends Component {
             return(
             
               <View>
-                        <TouchableOpacity>
-    
+                        
                         <ImageBackground
                       style={styles.card1}
                       imageStyle={styles.card2}
-                      source={item==true?require("../srcf/pbg.jpg"):require("../srcf/pbg.jpg")}
+                      source={require("../srcf/pbg.jpg")}
                     >
                       <View style={styles.imgwithcard}>
             
             
                        
                       <Image
-            source={{uri: item.cardsource}}
+            source={{uri: item.crdimg}}
             resizeMode="cover"
             style={styles.imagex}
             ></Image>
                         
                         
-                        <Text style={styles.textcard}>Name:- {item.cname}</Text>
+                        <Text style={styles.textcard}>Item:- {item.product1}</Text>
+                        
             
                         </View>
-                        <Text style={styles.textcard1}>Phone No:- {item.phn}  </Text>
-                        
-                       
+    
+                        <View style={styles.ttf}>
+    
+                        <ImageBackground
+                      style={styles.cards1}
+                      imageStyle={styles.cards2}
+                      source={require("../srcf/shr.png")}
+                    >
+                      
+    
+                          <TouchableOpacity>
+                        <Text numberOfLines={1} style={styles.textcard1}> {item.link}  </Text>
+    
+                        </TouchableOpacity>
+    
+    
+      </ImageBackground>
+    
+      <TouchableOpacity onPress={()=>this.share(item)} >
+      <Icon name="sharealt" size={30} color="#fff" style={styles.shr} />
+         </TouchableOpacity>
+    
+                        </View>
                          
                          
                          
                          </ImageBackground>
-                         </TouchableOpacity>
+            
             
                          <View style={styles.imgbutton}>
             
-                         <TouchableOpacity onPress={() =>navigation.push('Editprimiumcard',{paramKey: item.phn,})}>
-            
-                    <ImageBackground
-                      style={styles.cardbutton}
-                      imageStyle={styles.cardbuttonStyle}
-                      source={require("../srcf/gradient.png")}
-                    >
-                      <Text style={styles.buttoncardtext}>Edit</Text>
-                    </ImageBackground>
-            
-                    </TouchableOpacity>
+                         
         
                          <TouchableOpacity  onPress={()=> this.destroy(item) } >
             
                     <ImageBackground
                       style={styles.cardbutton}
                       imageStyle={styles.cardbuttonStyle}
-                      source={require("../srcf/Gradient_XrvkRkC.png")}
+                      source={require("../srcf/redg.png")}
                     >
                       <Text style={styles.buttoncardtext}>Delete</Text>
                     </ImageBackground>
             
                     </TouchableOpacity>
             
-                    <TouchableOpacity onPress={()=> this.Fetchs(item) }>
-                    <ImageBackground
-                      style={styles.cardbutton}
-                      imageStyle={styles.cardbuttonStyle}
-                      source={require("../srcf/redg.png")}
-                    >
-                      <Text style={styles.buttoncardtext}>Print</Text>
-                    </ImageBackground>
-            
-                    </TouchableOpacity>
             
             
                          
@@ -556,220 +486,262 @@ export default class Pcardviw extends Component {
     
     
     }
-}
-
-const styles = StyleSheet.create({
-
-    body:{
-      backgroundColor:"#313131",
-      width:windowWidth,
-      height:'100%',
-  
-    },
-  
-    loader:{
-  
-      marginTop:10,
-      alignItems:'center'
-  
-    },
-  
-    upermenu:{
-  
-      marginTop:-1,
-      flexDirection: "row",
-  
-    },
-  
-    imgtop1:{
-  
-  
-      width: (windowWidth/3),
-  height: 50,
-  borderWidth: 1,
-  borderColor: "#000000"
-  
-      
-    },
-  
-    cardbutton:{
-  
-      
-     
-      
-      width: (windowWidth/3),
-  height: 50,
-  borderWidth: 1,
-  borderColor: "#000000",
-  borderRadius: 10,
-  overflow: "hidden"
-  
-      
-    },
-  
-    cardbuttonStyle:{
-  
-      width: (windowWidth/3),
-  height: 50,
-  
-    },
-  
-    invisblecard:{
-      marginTop:10,
-      height:100,
-    },
-  
-    card1:{
-  
-      marginTop:15,
-      width: windowWidth,
-  height: 150,
-  borderWidth: 1,
-  borderColor: "#000000",
-  borderRadius: 10,
-  overflow: "hidden"
-  
-      
-    },
-  
-    imageStyle:{
-  
-      width: (windowWidth/3)-1,
-  height: 50,
-  
-    },
-  
-   
-  
-    card2:{
-  
-      width: windowWidth,
-  height: 150,
-  
-    },
-  
-  
-   
-    textmenuupper:{
-  
-      color: "rgba(255,255,255,1)",
-      marginTop: 12,
-      marginLeft: '20%',
-      marginRight:'20%',
-      alignItems:'center',
-  
-    },
-    textmenuupper11:{
-  
-      color: "rgba(255,255,255,1)",
-      marginTop: 12,
-      marginLeft: '12%',
-      marginRight:'2%',
-      alignItems:'center',
-  
-    },
-    textmenuupper1:{
-  
-      color: "rgba(255,255,255,1)",
-      marginTop: 10,
-      marginLeft: '25%',
-      marginRight:'25%',
-      alignItems:'center',
-  
-    },
-  
-    cardstart:{
-  
-      marginTop:65,
-  
-    },
-    cardend:{
-  
-      marginTop:20,
-      height:80,
-  
-    },
-    textcard:{
-  
-      color:'white',
-      fontSize:20,
-      marginLeft:'5%',
-      fontWeight: "bold",
-      
-    },
-  
-    textcard1:{
-  
-      color:'white',
-      fontSize:15,
-      marginTop:'15%',
-  
-      marginLeft:'35%',
-      position:'absolute',
-      
-    },
+    }
     
-  
-    imgwithcard:{
-  
-      flexDirection:'row',
-      marginTop:'5%',
-      marginLeft:'5%',
-      marginRight:'5%'
-  
-    },
-    imgbutton:{
-  
-      flexDirection:'row',
-      marginTop:0,
-      
-  
-    },
-  
-    imagex:{
-  
-      marginTop:'5%',
-      width: 80,
-    height: 80,
-  
-    /*borderRadius: 100,
+    
+    const styles = StyleSheet.create({
+    
+      body:{
+        backgroundColor:"#313131",
+        width:windowWidth,
+        height:'100%',
+    
+      },
+    
+      loader:{
+    
+        marginTop:10,
+        alignItems:'center'
+    
+      },
+    
+      upermenu:{
+    
+        marginTop:-1,
+        flexDirection: "row",
+    
+      },
+    
+      imgtop1:{
+    
+    
+        width: (windowWidth/3),
+    height: 50,
     borderWidth: 1,
-    borderColor: "#000000",*/
+    borderColor: "#000000"
+    
+        
+      },
+    
+      cardbutton:{
+    
+        
+       
+        
+        width: (windowWidth),
+    height: 50,
+    borderWidth: 1,
+    borderColor: "#000000",
+    borderRadius: 10,
+    overflow: "hidden"
+    
+        
+      },
+    
+      cardbuttonStyle:{
+    
+        width: windowWidth,
+    height: 50,
+    
+      },
+    
+      invisblecard:{
+        marginTop:30,
+        height:100,
+      },
+    
+      card1:{
+    
+        marginTop:15,
+        width: windowWidth,
+    height: 150,
+    borderWidth: 1,
+    borderColor: "#000000",
+    borderRadius: 10,
+    overflow: "hidden"
+    
+        
+      },
+    
+    
+      shr:{
+    
+        marginTop:62,
+        marginLeft:10,
+    
+      },
+      cards1:{
+    
+        marginTop:60,
+        marginLeft:50,
+        width: 200,
+    height: 35,
+    borderWidth: 1,
+    borderColor: "#000000",
+    borderRadius: 50,
+    overflow: "hidden"
+    
+        
+      },
+      cards2:{
+    
+       
+        width:200,
+    height: 35,
+    
+    
+        
+      },
+    
+      imageStyle:{
+    
+        width: (windowWidth/3)-1,
+    height: 50,
+    
+      },
+    
+     
+    
+      card2:{
+    
+        width: windowWidth,
+    height: 150,
+    
+      },
+    
+    
+     
+      textmenuupper:{
+    
+        color: "rgba(255,255,255,1)",
+        marginTop: 12,
+        marginLeft: '20%',
+        marginRight:'20%',
+        alignItems:'center',
+    
+      },
+      textmenuupper1:{
+    
+        color: "rgba(255,255,255,1)",
+        marginTop: 10,
+        marginLeft: '25%',
+        marginRight:'25%',
+        alignItems:'center',
+    
+      },
+    
+      cardstart:{
+    
+        marginTop:65,
+    
+      },
+      cardend:{
+    
+        marginTop:20,
+        height:80,
+    
+      },
+
+      textmenuupper11:{
   
-    },
-  
-    buttoncardtext:{
-  
-      marginTop:'5%',
-      marginLeft:'30%',
-      marginRight:'30%',
-      fontSize:16,
-      color:'white',
-    },
-  
-    fatlist:{
-  
-  
-      marginTop:20,
-  
-    },
-  
-  
-      footer:{
-  
-   
-          // backgroundColor: "rgba(231,231,231,1)",
-           alignItems:"center",
-          
-           marginTop: windowHeight-70,
-           
-  
-          
-  
-          position:'absolute',
-  
-          
-  
-     },
-  
-  });
+        color: "rgba(255,255,255,1)",
+        marginTop: 12,
+        marginLeft: '12%',
+        marginRight:'2%',
+        alignItems:'center',
+    
+      },
+      textcard:{
+    
+        color:'white',
+        fontSize:20,
+        marginLeft:'5%',
+        fontWeight: "bold",
+        
+      },
+    
+      textcard1:{
+    
+        color:'white',
+        fontSize:15,
+       
+        
+        marginTop:5
+        
+        
+        
+      },
+      ttf:{
+    
+        
+       
+        flexDirection:'row',
+        marginLeft:'16%',
+        position:'absolute',
+        
+      },
+      
+    
+      imgwithcard:{
+    
+        flexDirection:'row',
+        marginTop:'5%',
+        marginLeft:'5%',
+        marginRight:'5%'
+    
+      },
+      imgbutton:{
+    
+        flexDirection:'row',
+        marginTop:0,
+        
+    
+      },
+    
+      imagex:{
+    
+        marginTop:'5%',
+        width: 80,
+      height: 80,
+    
+      /*borderRadius: 100,
+      borderWidth: 1,
+      borderColor: "#000000",*/
+    
+      },
+    
+      buttoncardtext:{
+    
+        marginTop:'3%',
+        marginLeft:'41%',
+        marginRight:'41%',
+        fontSize:20,
+        color:'white',
+      },
+    
+      fatlist:{
+    
+    
+        marginTop:20,
+    
+      },
+    
+    
+        footer:{
+    
+     
+            // backgroundColor: "rgba(231,231,231,1)",
+             alignItems:"center",
+            
+             marginTop: windowHeight-70,
+             
+    
+            
+    
+            position:'absolute',
+    
+            
+    
+       },
+    
+    });

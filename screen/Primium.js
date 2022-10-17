@@ -29,7 +29,7 @@ export default function Primium() {
   const [Name, setName] = useState('');
   const [Bname, setBName] = useState('');
   const [Email, setEmail] = useState('');
-  const [paid, setPayid] = useState('');
+  const [paid, setPayid] = useState();
   const [amm, setAmmount] = useState('');
   const [sname, setSname] = useState('');
   
@@ -80,30 +80,45 @@ const handlePayment= async(item)=>{
 
       RazorpayCheckout.open(options).then((data) => {
         
-        alert(`Success: ${data.razorpay_payment_id}`);
+        //alert(`Success: ${data.razorpay_payment_id}`);
 
+        //then(setPayid(data.razorpay_payment_id));
 
-       setPayid(data.razorpay_payment_id);
+        console.log(data);
+
+        if(data){
+
+          setPayid(data.razorpay_payment_id);
+       
+          setIsLoad(true);
+          handle(data,item);
+
+        }
         
-    
-       handle();
+ 
 
+       
 
+      
+      
+       
 
 
 
 
       }).catch((error) => {
         // handle failure
-        alert(`Error: ${error.code} | ${error.description}`);
+        alert(`This Message From Razorpay Your Payment Faild: ${error.code} | ${error.description}`);
       });
        
         }
 
 
 
-        const handle= async()=>{
+        const handle= async(data,item)=>{
           const numbed= await AsyncStorage.getItem('number');
+
+          
 
           try{
 
@@ -121,12 +136,12 @@ const handlePayment= async(item)=>{
                   'Authorization': freshtoken
                 }),
                 body:JSON.stringify({
-                  "pid":paid,
+                  "pid":data.razorpay_payment_id,
                   "name":Bname,
                   "phn":numbed,
                   "email":Email,
-                  "ammount":amm,
-                  "tran":sname,
+                  "ammount":item.price,
+                  "tran":item.name,
                   
           
                 })
@@ -137,18 +152,29 @@ const handlePayment= async(item)=>{
               });
   
               const pay= await postpayment.json();
+
+              console.log(paid);
+          console.log(Bname);
+          console.log(numbed);
+          console.log(Email);
+          console.log(amm);
+          console.log(sname);
   
               if(pay.success===true){
     
     
-               // alert("Done");
+                //alert("Done");
 
-               navigation.push('Plus');
+
+                setIsLoad(false);
+
+               navigation.push('Primiumcard');
     
               }
 
               else{
         
+                setIsLoad(false);
                     
                /* try {
                        await AsyncStorage.removeItem('token');
@@ -638,6 +664,12 @@ height: 150,
     flexDirection:'row',
     marginTop:0,
     
+
+  },
+
+  imgtop5:{
+
+    marginTop:100,
 
   },
 

@@ -47,6 +47,12 @@ import Changefreecards from './screen/Changefreecards';
 import Primium from './screen/Primium';
 import Primiumcard from './screen/Primiumcard';
 import Pcardviw from './screen/Pcardviw';
+import Primiumplus from './screen/Primiumplus';
+import Primiummanually from './screen/Primiummanually';
+import Editprimiumcard from './screen/Editprimiumcard';
+import Changeprimiumcards from './screen/Changeprimiumcards';
+import Primiumlink from './screen/Primiumlink';
+import Primiumsavelink from './screen/Primiumsavelink';
 
 
 
@@ -79,6 +85,12 @@ const Navigation =()=> {
         <Stack.Screen name="Primium" component={Primium} options={{headerShown:false}} />
         <Stack.Screen name="Primiumcard" component={Primiumcard} options={{headerShown:false}} />
         <Stack.Screen name="Pcardviw" component={Pcardviw} options={{headerShown:false}} />
+        <Stack.Screen name="Primiumplus" component={Primiumplus} options={{headerShown:false}} />
+        <Stack.Screen name="Primiummanually" component={Primiummanually} options={{headerShown:false}} />
+        <Stack.Screen name="Editprimiumcard" component={Editprimiumcard} options={{headerShown:false}} />
+        <Stack.Screen name="Changeprimiumcards" component={Changeprimiumcards} options={{headerShown:false}} />
+        <Stack.Screen name="Primiumlink" component={Primiumlink} options={{headerShown:false}} />
+        <Stack.Screen name="Primiumsavelink" component={Primiumsavelink} options={{headerShown:false}} />
 
         
         

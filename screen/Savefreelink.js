@@ -210,7 +210,7 @@ export default class Savefreelink extends Component {
         const shareOptions ={
 
           title: 'Required Some informations',
-          message: 'Hi, Your Order is Rady for Dispatch Kindly Fill The Address Details in The Given Link ', // Note that according to the documentation at least one of "message" or "url" fields is required
+          message: 'Hi, Your Order is Ready for Dispatch Kindly Fill The Address Details in The Given Link ', // Note that according to the documentation at least one of "message" or "url" fields is required
           url: item.link,
           subject: 'Required Some informations'
         }
