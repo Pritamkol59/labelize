@@ -1114,11 +1114,6 @@
     "@jridgewell/resolve-uri" "^3.0.3"
     "@jridgewell/sourcemap-codec" "^1.4.10"
 
-"@lowkey/react-native-gif@^3.1.0":
-  "integrity" "sha512-OXoI2p3xHdVkYvA22BjPR7fXp/7CsCwf0/UFrNGAb17lQFluRgkSmi4TLyuK0kYdguPSZdTnDm3NW+siS0w9uQ=="
-  "resolved" "https://registry.npmjs.org/@lowkey/react-native-gif/-/react-native-gif-3.1.0.tgz"
-  "version" "3.1.0"
-
 "@react-native-async-storage/async-storage@^1.17.7":
   "integrity" "sha512-mDtWhCcpxzrZhA95f6zi0pnBsjBEZW1LKZWfxVXG0UfaWpPxDBCKowNk2xjRTytckZeVhjmPJPtBU+8QNQcR0A=="
   "resolved" "https://registry.npmjs.org/@react-native-async-storage/async-storage/-/async-storage-1.17.7.tgz"
@@ -6215,11 +6210,6 @@
   "resolved" "https://registry.npmjs.org/react-native-floating-action-menu/-/react-native-floating-action-menu-1.2.4.tgz"
   "version" "1.2.4"
 
-"react-native-fontawesome@^7.0.0":
-  "integrity" "sha512-UBZXyTLO8rK2NMf7Eomzb70b6cpL5JlBI4xwJGnRroRofrIXUxPelmm0Ojs6OcMs4ucAyPidCOxbJDJlmb2vdA=="
-  "resolved" "https://registry.npmjs.org/react-native-fontawesome/-/react-native-fontawesome-7.0.0.tgz"
-  "version" "7.0.0"
-
 "react-native-fullscreen-chz@^4.0.13":
   "integrity" "sha512-uMskQa/1qZ7IcuZEhLSrHZPKHe+rN9yMbD8qxaqPwfWDrb06wUdSx2RXnxgG0g6U43c0nAVpArkyNurKRHvhjw=="
   "resolved" "https://registry.npmjs.org/react-native-fullscreen-chz/-/react-native-fullscreen-chz-4.0.13.tgz"
@@ -6338,10 +6328,10 @@
     "css-select" "^4.2.1"
     "css-tree" "^1.0.0-alpha.39"
 
-"react-native-vector-icons@*", "react-native-vector-icons@^9.1.0":
-  "integrity" "sha512-2AHZ/h9d/+rC0odz+OwbGNlc1Lik/pHhSixn4HfC8RtQ8CxfSBZ6gg7bTLcZhdSvZN+ZEGi30Fj+ZnOSQy+smg=="
-  "resolved" "https://registry.npmjs.org/react-native-vector-icons/-/react-native-vector-icons-9.1.0.tgz"
-  "version" "9.1.0"
+"react-native-vector-icons@*", "react-native-vector-icons@^9.2.0":
+  "integrity" "sha512-wKYLaFuQST/chH3AJRjmOLoLy3JEs1JR6zMNgTaemFpNoXs0ztRnTxcxFD9xhX7cJe1/zoN5BpQYe7kL0m5yyA=="
+  "resolved" "https://registry.npmjs.org/react-native-vector-icons/-/react-native-vector-icons-9.2.0.tgz"
+  "version" "9.2.0"
   dependencies:
     "prop-types" "^15.7.2"
     "yargs" "^16.1.1"

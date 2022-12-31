@@ -19,7 +19,7 @@ import {
   View,
   Dimensions,
 } from 'react-native';
-import GifImage from '@lowkey/react-native-gif';
+
 
 import NetInfo from "@react-native-community/netinfo";
 
@@ -53,6 +53,9 @@ import Editprimiumcard from './screen/Editprimiumcard';
 import Changeprimiumcards from './screen/Changeprimiumcards';
 import Primiumlink from './screen/Primiumlink';
 import Primiumsavelink from './screen/Primiumsavelink';
+import Invoice from './screen/Invoice';
+import InvoiceCreate from './screen/InvoiceCreate';
+import InvoiceUpdate from './screen/InvoiceUpdate';
 
 
 
@@ -91,6 +94,9 @@ const Navigation =()=> {
         <Stack.Screen name="Changeprimiumcards" component={Changeprimiumcards} options={{headerShown:false}} />
         <Stack.Screen name="Primiumlink" component={Primiumlink} options={{headerShown:false}} />
         <Stack.Screen name="Primiumsavelink" component={Primiumsavelink} options={{headerShown:false}} />
+        <Stack.Screen name="Invoice" component={Invoice} options={{headerShown:false}} />
+        <Stack.Screen name="InvoiceCreate" component={InvoiceCreate} options={{headerShown:false}} />
+        <Stack.Screen name="InvoiceUpdate" component={InvoiceUpdate} options={{headerShown:false}} />
 
         
         

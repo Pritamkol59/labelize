@@ -41,15 +41,25 @@ export default function Primiummanually() {
     const [paymenttype, setpaymenttype] = useState('');
 
     const [product1, setproduct1] = useState('');
-    
-
-
     const [productvalue1, setproductvalue1] = useState('');
-    
     const [quality1, setquality1] = useState('');
-    
-
     const [productnetweight1, setproductnetweight1] = useState('');
+   
+    const [product2, setproduct2] = useState('');
+    const [productvalue2, setproductvalue2] = useState('');
+    const [quality2, setquality2] = useState('');
+    const [productnetweight2, setproductnetweight2] = useState('');
+   
+    const [product3, setproduct3] = useState('');
+    const [productvalue3, setproductvalue3] = useState('');
+    const [quality3, setquality3] = useState('');
+    const [productnetweight3, setproductnetweight3] = useState('');
+   
+    const [product4, setproduct4] = useState('');
+    const [productvalue4, setproductvalue4] = useState('');
+    const [quality4, setquality4] = useState('');
+    const [productnetweight4, setproductnetweight4] = useState('');
+    const [total, settotal] = useState('');
    
 
 
@@ -107,7 +117,7 @@ setIscardsource('https://lableiz.com/public/storage/primum/temp5.png');
   const saves = async() =>{
 
 
-    if(cname!=='' && phn!=='' && cadd1!==''&& ps!==''&& po!==''&& dist!==''&& st!==''&& pin!=='' && tandc!==''&& product1!==''&& quality1!==''&& productnetweight1!==''&& paymenttype!=='' ){
+    if(cname!=='' && phn!=='' && total!='' && cadd1!==''&& ps!==''&& po!==''&& dist!==''&& st!==''&& pin!=='' && tandc!==''&& product1!==''&& quality1!==''&& productnetweight1!==''&& paymenttype!=='' ){
 
       
       setIsLoad(true);
@@ -148,11 +158,34 @@ setIscardsource('https://lableiz.com/public/storage/primum/temp5.png');
                 'tandc':tandc,
                 'protype':protype,
                 'paymenttype':paymenttype,
+
                 'product1':product1,
                 'productvalue1':productvalue1,
                 'quality1':quality1,
                 'productnetweight1':productnetweight1,
+
+                
+
+                'product2':product2,
+                'productvalue2':productvalue2,
+                'quality2':quality2,
+                'productnetweight2':productnetweight2,
+
+
+                'product3':product3,
+                'productvalue3':productvalue3,
+                'quality3':quality3,
+                'productnetweight3':productnetweight3,
+
+
+                'product4':product4,
+                'productvalue4':productvalue4,
+                'quality4':quality4,
+                'productnetweight4':productnetweight4,
+
+
                 'cadd1':cadd1,
+                'total':total,
                 'cadd2':cadd2,
                 'ps':ps,
                 'po':po,
@@ -326,6 +359,399 @@ style={styles.imagex}
  ></TextInput>
 
 
+
+
+
+
+
+<TextInput
+     label="Product Type *"
+     placeholder=''
+     
+     mode='outlined'
+     style={styles.placeholder}
+    
+     onChangeText={setprotype}
+
+     maxLength={40}
+
+ value={protype}
+    
+     theme={{ roundness: 35,  colors:{text:'black',primary:"black"}}} 
+     
+
+ ></TextInput>
+
+
+<TextInput
+     label="Product Name 1 *"
+     placeholder=''
+     
+     mode='outlined'
+     style={styles.placeholder}
+    
+     onChangeText={setproduct1}
+
+     maxLength={40}
+
+ value={product1}
+    
+     theme={{ roundness: 35,  colors:{text:'black',primary:"black"}}} 
+     
+
+ ></TextInput>
+
+
+<TextInput
+     label="Product Quality 1 *"
+     placeholder=''
+     
+     mode='outlined'
+     style={styles.placeholder}
+    
+     onChangeText={setquality1}
+
+     keyboardType="numeric"
+
+     maxLength={40}
+
+ value={quality1}
+    
+     theme={{ roundness: 35,  colors:{text:'black',primary:"black"}}} 
+     
+
+ ></TextInput>
+
+
+<TextInput
+     label="Product Net Weight 1 *"
+     placeholder=''
+     
+     mode='outlined'
+     style={styles.placeholder}
+    
+     onChangeText={setproductnetweight1}
+
+     maxLength={10}
+
+ value={productnetweight1}
+    
+     theme={{ roundness: 35,  colors:{text:'black',primary:"black"}}} 
+     
+
+ ></TextInput>
+
+
+<TextInput
+     label="Product value 1 *"
+     placeholder=''
+     
+     mode='outlined'
+     style={styles.placeholder}
+    
+     onChangeText={setproductvalue1}
+
+     keyboardType="numeric"
+
+     maxLength={40}
+
+ value={productvalue1}
+    
+     theme={{ roundness: 35,  colors:{text:'black',primary:"black"}}} 
+     
+
+ ></TextInput>
+
+
+
+
+<TextInput
+     label="Product Name 2 *"
+     placeholder=''
+     
+     mode='outlined'
+     style={styles.placeholder}
+    
+     onChangeText={setproduct2}
+
+     maxLength={40}
+
+ value={product2}
+    
+     theme={{ roundness: 35,  colors:{text:'black',primary:"black"}}} 
+     
+
+ ></TextInput>
+
+
+<TextInput
+     label="Product Quality 2 *"
+     placeholder=''
+     
+     mode='outlined'
+     style={styles.placeholder}
+    
+     onChangeText={setquality2}
+
+     keyboardType="numeric"
+
+     maxLength={40}
+
+ value={quality2}
+    
+     theme={{ roundness: 35,  colors:{text:'black',primary:"black"}}} 
+     
+
+ ></TextInput>
+
+
+<TextInput
+     label="Product Net Weight 2 *"
+     placeholder=''
+     
+     mode='outlined'
+     style={styles.placeholder}
+    
+     onChangeText={setproductnetweight2}
+
+     maxLength={10}
+
+ value={productnetweight2}
+    
+     theme={{ roundness: 35,  colors:{text:'black',primary:"black"}}} 
+     
+
+ ></TextInput>
+
+
+<TextInput
+     label="Product value 2 *"
+     placeholder=''
+     
+     mode='outlined'
+     style={styles.placeholder}
+    
+     onChangeText={setproductvalue2}
+
+     keyboardType="numeric"
+
+     maxLength={40}
+
+ value={productvalue2}
+    
+     theme={{ roundness: 35,  colors:{text:'black',primary:"black"}}} 
+     
+
+ ></TextInput>
+
+
+
+
+<TextInput
+     label="Product Name 3 *"
+     placeholder=''
+     
+     mode='outlined'
+     style={styles.placeholder}
+    
+     onChangeText={setproduct3}
+
+     maxLength={40}
+
+ value={product3}
+    
+     theme={{ roundness: 35,  colors:{text:'black',primary:"black"}}} 
+     
+
+ ></TextInput>
+
+
+<TextInput
+     label="Product Quality 3 *"
+     placeholder=''
+     
+     mode='outlined'
+     style={styles.placeholder}
+    
+     onChangeText={setquality3}
+
+     keyboardType="numeric"
+
+     maxLength={40}
+
+ value={quality3}
+    
+     theme={{ roundness: 35,  colors:{text:'black',primary:"black"}}} 
+     
+
+ ></TextInput>
+
+
+<TextInput
+     label="Product Net Weight 3 *"
+     placeholder=''
+     
+     mode='outlined'
+     style={styles.placeholder}
+    
+     onChangeText={setproductnetweight3}
+
+     maxLength={10}
+
+ value={productnetweight3}
+    
+     theme={{ roundness: 35,  colors:{text:'black',primary:"black"}}} 
+     
+
+ ></TextInput>
+
+
+<TextInput
+     label="Product value 3 *"
+     placeholder=''
+     
+     mode='outlined'
+     style={styles.placeholder}
+    
+     onChangeText={setproductvalue3}
+
+     keyboardType="numeric"
+
+     maxLength={40}
+
+ value={productvalue3}
+    
+     theme={{ roundness: 35,  colors:{text:'black',primary:"black"}}} 
+     
+
+ ></TextInput>
+
+
+
+
+<TextInput
+     label="Product Name 4 *"
+     placeholder=''
+     
+     mode='outlined'
+     style={styles.placeholder}
+    
+     onChangeText={setproduct4}
+
+     maxLength={40}
+
+ value={product4}
+    
+     theme={{ roundness: 35,  colors:{text:'black',primary:"black"}}} 
+     
+
+ ></TextInput>
+
+
+<TextInput
+     label="Product Quality 4 *"
+     placeholder=''
+     
+     mode='outlined'
+     style={styles.placeholder}
+    
+     onChangeText={setquality4}
+
+     keyboardType="numeric"
+
+     maxLength={40}
+
+ value={quality4}
+    
+     theme={{ roundness: 35,  colors:{text:'black',primary:"black"}}} 
+     
+
+ ></TextInput>
+
+
+<TextInput
+     label="Product Net Weight 4 *"
+     placeholder=''
+     
+     mode='outlined'
+     style={styles.placeholder}
+    
+     onChangeText={setproductnetweight4}
+
+     maxLength={10}
+
+ value={productnetweight4}
+    
+     theme={{ roundness: 35,  colors:{text:'black',primary:"black"}}} 
+     
+
+ ></TextInput>
+
+
+<TextInput
+     label="Product value 4 *"
+     placeholder=''
+     
+     mode='outlined'
+     style={styles.placeholder}
+    
+     onChangeText={setproductvalue4}
+
+     keyboardType="numeric"
+
+     maxLength={40}
+
+ value={productvalue4}
+    
+     theme={{ roundness: 35,  colors:{text:'black',primary:"black"}}} 
+     
+
+ ></TextInput>
+
+
+<TextInput
+     label="Total *"
+     placeholder=''
+     
+     mode='outlined'
+     style={styles.placeholder}
+    
+     onChangeText={settotal}
+
+     keyboardType="numeric"
+
+     maxLength={40}
+
+ value={total}
+    
+     theme={{ roundness: 35,  colors:{text:'black',primary:"black"}}} 
+     
+
+ ></TextInput>
+
+
+
+<TextInput
+     label="Payment Type"
+     placeholder='COD OR PRE-PAID'
+     
+     mode='outlined'
+     style={styles.placeholder}
+    
+     onChangeText={setpaymenttype}
+
+     maxLength={40}
+
+ value={paymenttype}
+    
+     theme={{ roundness: 35,  colors:{text:'black',primary:"black"}}} 
+     
+
+ ></TextInput>
+
+ 
+
+
 <TextInput
      label="Address 1 *"
      placeholder=''
@@ -477,123 +903,7 @@ style={styles.imagex}
 
 
 
-<TextInput
-     label="Product Type *"
-     placeholder=''
-     
-     mode='outlined'
-     style={styles.placeholder}
-    
-     onChangeText={setprotype}
 
-     maxLength={40}
-
- value={protype}
-    
-     theme={{ roundness: 35,  colors:{text:'black',primary:"black"}}} 
-     
-
- ></TextInput>
-
-
-<TextInput
-     label="Product Name  *"
-     placeholder=''
-     
-     mode='outlined'
-     style={styles.placeholder}
-    
-     onChangeText={setproduct1}
-
-     maxLength={40}
-
- value={product1}
-    
-     theme={{ roundness: 35,  colors:{text:'black',primary:"black"}}} 
-     
-
- ></TextInput>
-
-
-<TextInput
-     label="Product Quality *"
-     placeholder=''
-     
-     mode='outlined'
-     style={styles.placeholder}
-    
-     onChangeText={setquality1}
-
-     keyboardType="numeric"
-
-     maxLength={40}
-
- value={quality1}
-    
-     theme={{ roundness: 35,  colors:{text:'black',primary:"black"}}} 
-     
-
- ></TextInput>
-
-
-<TextInput
-     label="Product Net Weight  *"
-     placeholder=''
-     
-     mode='outlined'
-     style={styles.placeholder}
-    
-     onChangeText={setproductnetweight1}
-
-     maxLength={10}
-
- value={productnetweight1}
-    
-     theme={{ roundness: 35,  colors:{text:'black',primary:"black"}}} 
-     
-
- ></TextInput>
-
-
-<TextInput
-     label="Product value  *"
-     placeholder=''
-     
-     mode='outlined'
-     style={styles.placeholder}
-    
-     onChangeText={setproductvalue1}
-
-     keyboardType="numeric"
-
-     maxLength={40}
-
- value={productvalue1}
-    
-     theme={{ roundness: 35,  colors:{text:'black',primary:"black"}}} 
-     
-
- ></TextInput>
-
-
-
-<TextInput
-     label="Payment Type"
-     placeholder='COD OR PRE-PAID'
-     
-     mode='outlined'
-     style={styles.placeholder}
-    
-     onChangeText={setpaymenttype}
-
-     maxLength={40}
-
- value={paymenttype}
-    
-     theme={{ roundness: 35,  colors:{text:'black',primary:"black"}}} 
-     
-
- ></TextInput>
 
 
 <TextInput

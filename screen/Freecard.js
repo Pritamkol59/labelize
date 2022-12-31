@@ -25,7 +25,9 @@ export default class Freecard extends Component {
     this.state={
 
       data:[],
+      dataSource:[],
       Page: 1,
+      onprss: false,
       
     }
 
@@ -84,6 +86,120 @@ export default class Freecard extends Component {
 
   }
 
+  Printall=()=>{
+
+
+    const styles = StyleSheet.create({
+
+
+      printal:{
+
+        width: 65,
+        height: 65,
+  },
+  
+  
+  Printalo:{
+  
+        marginTop: windowHeight-150,
+        marginLeft:'80%',
+           position:'absolute',
+  
+      },
+
+
+    });
+
+
+    return(
+
+
+      <View style={styles.Printalo}>
+
+
+
+      <TouchableOpacity onPress={this.printdemand}> 
+      
+      <Image
+          source={require('../srcf/plus.png')}
+          resizeMode="contain"
+          style={styles.printal}
+        ></Image>
+      
+      </TouchableOpacity>
+      
+      
+      </View>
+
+
+    )
+
+
+  }
+
+  printdemand=async()=>{
+
+    const numbed= await AsyncStorage.getItem('number');
+    
+      try{
+    
+        const tok = await AsyncStorage.getItem('token');
+        
+                
+                 
+        const suparfresh= JSON.parse(tok); 
+    
+        const freshtoken= "Bearer "+suparfresh;
+     const tou= await  fetch(api+"genfreemulticard",{ 
+        method:"POST",
+           headers:new Headers({
+            'Accept': 'application/json',
+            'Content-Type': 'application/json',
+            'Authorization': freshtoken
+          }),
+          body:JSON.stringify({
+            "num":numbed,
+            "print":this.state.dataSource
+
+            
+            
+            
+    
+          })
+        
+        });
+           const Url= await tou.json();
+
+           console.log(Url);
+
+           
+
+           if(Url.success===true){
+
+           /* Linking.canOpenURL(Url.data).then(supported => {
+              if (supported) {
+                Linking.openURL(Url.data);
+              } else {
+                console.log("Don't know how to open URI: " + Url.data);
+              }
+            });*/
+
+            OpenAnything.Pdf(Url.data);
+
+        }
+
+
+
+      }
+
+
+           catch(e){
+    
+            console.log(e);
+            }
+
+
+  }
 
   Uppermenu=()=>{
 
@@ -273,7 +389,7 @@ export default class Freecard extends Component {
      finds = async() =>{
 
       const numbed= await AsyncStorage.getItem('number');
-    
+     
       try{
     
         const tok = await AsyncStorage.getItem('token');
@@ -361,7 +477,7 @@ export default class Freecard extends Component {
       
      // const[tempData, settempData]= useState([]);
       
-      const OnSelect=ind=>{
+     /* const OnSelect=ind=>{
 
         const temp=[];
 
@@ -385,7 +501,53 @@ export default class Freecard extends Component {
 
         console.log(tempData);
       }
+*/
 
+const selectItem = (data,index) => {
+  
+ // const[temp, settempData]= useState([]);
+
+  /*this.setState({
+    dataSource:this.state.dataSource.concat(data) 
+  });*/
+  
+ if(this.state.dataSource.includes(data)){
+
+   console.log("match");
+
+   const index = this.state.dataSource.indexOf(data);
+   
+   //console.log(index);
+ 
+   this.state.dataSource.splice(index, 1);
+
+   if(this.state.dataSource.length === 0){
+
+    
+    this.setState({
+      onprss:false
+    });
+
+   }
+
+ } 
+ else{
+  console.log("notmatch");
+  
+
+  
+    this.state.dataSource.push(data);
+
+    this.setState({
+      onprss:true
+    });
+ 
+  
+ } 
+ 
+ 
+  console.log(data,this.state.dataSource);
+};
      
 
     const  renerItem=({item , index})=>{
@@ -396,12 +558,12 @@ export default class Freecard extends Component {
         return(
         
           <View>
-                    <TouchableOpacity>
+                    <TouchableOpacity onPress={() => selectItem(item.id,index)}>
 
                     <ImageBackground
                   style={styles.card1}
                   imageStyle={styles.card2}
-                  source={item==true?require("../srcf/Gradient_XrvkRkC.png"):require("../srcf/gradient.png")}
+                  source={this.state.dataSource.includes(item.id) ? require("../srcf/Gradient_XrvkRkC.png") : require("../srcf/gradient.png")}
                 >
                   <View style={styles.imgwithcard}>
         
@@ -414,7 +576,7 @@ export default class Freecard extends Component {
         ></Image>
                     
                     
-                    <Text style={styles.textcard}>Name:- {item.cname}</Text>
+                    <Text style={styles.textcard}>Name:-  {item.cname}</Text>
         
                     </View>
                     <Text style={styles.textcard1}>Phone No:- {item.cno}  </Text>
@@ -541,6 +703,8 @@ render(){
 
 
 <this.Plus/>
+
+{this.state.onprss==true?<this.Printall/>:null}
     
     
     <View style={styles.footer}>
@@ -660,6 +824,12 @@ height: 150,
     marginRight:'20%',
     alignItems:'center',
 
+  },
+  list: {
+   
+    backgroundColor: "#192338",
+   
+    zIndex: -1
   },
   textmenuupper1:{
 

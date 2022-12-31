@@ -12,30 +12,35 @@ import AsyncStorage from '@react-native-async-storage/async-storage';
 
 import { api } from './Constances';
 
-export default function Primiumlink() {
+export default function InvoiceCreate() {
     const navigation = useNavigation(); 
 
-    const [isSelect, setIsSelect] = useState(false);
+    const [isSelect, setIsSelect] = useState(true);
     const [isLoad, setIsLoad] = useState(false);
-    const [SelectCard, setIsSelectCard] = useState('');
-    const [cardsource, setIscardsource] = useState('');
     
+    const [cname, setcname] = useState('');
+      
+      const [phn, setphn] = useState('');
+  
+      const [cadd1, setcadd1] = useState('');
+      const [cadd2, setcadd2] = useState('');
+      const [dist, setdist] = useState('');
+      const [st, setst] = useState('');
+      const [pin, setpin] = useState('');
+      const [ps, setps] = useState('');
+      const [po, setpo] = useState('');
+      const [landmark, setlandmark] = useState('');
+  
+      
   
       
   
       const [tandc, settandc] = useState('');
-      const [protype, setprotype] = useState('');
-      const [paymenttype, setpaymenttype] = useState('');
+     
   
       const [product1, setproduct1] = useState('');
-      
-  
-  
       const [productvalue1, setproductvalue1] = useState('');
-      
       const [quality1, setquality1] = useState('');
-      
-  
       const [productnetweight1, setproductnetweight1] = useState('');
      
       const [product2, setproduct2] = useState('');
@@ -108,7 +113,7 @@ export default function Primiumlink() {
     const saves = async() =>{
   
   
-      if( tandc!==''&& product1!==''&& quality1!==''&& productnetweight1!==''&& paymenttype!=='' ){
+      if( tandc!==''&& product1!==''&& quality1!==''&& productnetweight1!=='' && cadd1!=='' && ps!=='' && po!=='' && dist!=='' && pin!=='' && st!==''  ){
   
         
         setIsLoad(true);
@@ -118,7 +123,7 @@ export default function Primiumlink() {
   
   
     
-        console.log(SelectCard);
+       
       
         setIsLoad(true);
       
@@ -130,7 +135,7 @@ export default function Primiumlink() {
               const suparfresh= JSON.parse(tok);
       
               const freshtoken= "Bearer "+suparfresh;
-           const postUserData= await  fetch(api+"genpcardlink",{ 
+           const postUserData= await  fetch(api+"saveinvoice",{ 
               method:"POST",
                  headers:new Headers({
                   'Accept': 'application/json',
@@ -138,36 +143,48 @@ export default function Primiumlink() {
                   'Authorization': freshtoken
                 }),
                 body:JSON.stringify({
-                 'inttro':numo,
-                 
-                  'cardname':SelectCard,
-                  'cardsource':cardsource,
-                  'tandc':tandc,
-                  'protype':protype,
-                  'paymenttype':paymenttype,
-                  
-                  'product1':product1,
-                  'productvalue1':productvalue1,
-                  'quality1':quality1,
-                  'productnetweight1':productnetweight1,
+                    'inttro':numo,
+                    'cname' : cname,
+                    'phn':phn,
+                    
+                    'tandc':tandc,
+                    
+                    
+    
+                    'product1':product1,
+                'productvalue1':productvalue1,
+                'quality1':quality1,
+                'productnetweight1':productnetweight1,
 
-                  'product2':product2,
-                  'productvalue2':productvalue2,
-                  'quality2':quality2,
-                  'productnetweight2':productnetweight2,
+                
 
-                  'product3':product3,
-                  'productvalue3':productvalue3,
-                  'quality3':quality3,
-                  'productnetweight3':productnetweight3,
+                'product2':product2,
+                'productvalue2':productvalue2,
+                'quality2':quality2,
+                'productnetweight2':productnetweight2,
 
-                  'product4':product4,
-                  'productvalue4':productvalue4,
-                  'quality4':quality4,
-                  'productnetweight4':productnetweight4,
 
-                  'total':total,
-                 
+                'product3':product3,
+                'productvalue3':productvalue3,
+                'quality3':quality3,
+                'productnetweight3':productnetweight3,
+
+
+                'product4':product4,
+                'productvalue4':productvalue4,
+                'quality4':quality4,
+                'productnetweight4':productnetweight4,
+    
+    
+                    'cadd1':cadd1,
+                    'total':total,
+                    'cadd2':cadd2,
+                    'ps':ps,
+                    'po':po,
+                    'dist':dist,
+                    'st':st,
+                    'pin':pin,
+                    'landmark':landmark
                   
   
                 })
@@ -193,7 +210,7 @@ export default function Primiumlink() {
   
                 
                   
-                  navigation.push('Primiumsavelink');
+                  navigation.push('Invoice');
                   
       
       
@@ -244,7 +261,7 @@ export default function Primiumlink() {
   
         >
            
-           <TouchableOpacity  onPress={() =>navigation.push('Primiumplus')}>
+           <TouchableOpacity  onPress={() =>navigation.push('Invoice')}>
   
   <Image
   source={require('../srcf/back.png')}
@@ -256,7 +273,7 @@ export default function Primiumlink() {
   
           
   
-          <Text style={styles.textmenuupper}> Generate Link</Text>
+          <Text style={styles.textmenuupper}> Generate Invoice</Text>
   
          
   
@@ -289,106 +306,139 @@ export default function Primiumlink() {
   
         >
            
-      <TextInput
-       label="Product Type *"
-       placeholder=''
-       
-       mode='outlined'
-       style={styles.placeholder}
-      
-       onChangeText={setprotype}
+           <TextInput
+     label="Customer Full Name *"
+     placeholder=''
+     
+     mode='outlined'
+     style={styles.placeholder}
+    
+     onChangeText={setcname}
+     maxLength={40}
+
+ value={cname}
+    
+     theme={{ roundness: 35,  colors:{text:'black',primary:"black"}}} 
+     
+
+ ></TextInput>
+
+
   
-       maxLength={40}
-  
-   value={protype}
-      
-       theme={{ roundness: 35,  colors:{text:'black',primary:"black"}}} 
-       
-  
-   ></TextInput>
-  
-  
+
+
   <TextInput
-       label="Product Name 1  *"
-       placeholder=''
-       
-       mode='outlined'
-       style={styles.placeholder}
-      
-       onChangeText={setproduct1}
-  
-       maxLength={30}
-  
-   value={product1}
-      
-       theme={{ roundness: 35,  colors:{text:'black',primary:"black"}}} 
-       
-  
-   ></TextInput>
-  
-  
-  <TextInput
-       label="Product Quality1 *"
-       placeholder=''
-       
-       mode='outlined'
-       style={styles.placeholder}
-      
-       onChangeText={setquality1}
-  
-       keyboardType="numeric"
-  
-       maxLength={40}
-  
-   value={quality1}
-      
-       theme={{ roundness: 35,  colors:{text:'black',primary:"black"}}} 
-       
-  
-   ></TextInput>
-  
-  
-  <TextInput
-       label="Product Net Weight 1 *"
-       placeholder=''
-       
-       mode='outlined'
-       style={styles.placeholder}
-      
-       onChangeText={setproductnetweight1}
-  
-       maxLength={10}
-  
-   value={productnetweight1}
-      
-       theme={{ roundness: 35,  colors:{text:'black',primary:"black"}}} 
-       
-  
-   ></TextInput>
-  
-  
-  <TextInput
-       label="Product value 1  *"
-       placeholder=''
-       
-       mode='outlined'
-       style={styles.placeholder}
-      
-       onChangeText={setproductvalue1}
-  
-       keyboardType="numeric"
-  
-       maxLength={40}
-  
-   value={productvalue1}
-      
-       theme={{ roundness: 35,  colors:{text:'black',primary:"black"}}} 
-       
-  
-   ></TextInput>
-  
-  <TextInput
-     label="Product Name 2 *"
+     label="Customer Phone *"
+     placeholder=''
+     
+     mode='outlined'
+     style={styles.placeholder}
+
+     keyboardType="numeric"
+     maxLength={10}
+    
+     onChangeText={setphn}
+
+ value={phn}
+    
+     theme={{ roundness: 35,  colors:{text:'black',primary:"black"}}} 
+     
+
+ ></TextInput>
+
+
+
+
+
+
+
+
+
+
+<TextInput
+     label="Product Name 1 *"
+     placeholder=''
+     
+     mode='outlined'
+     style={styles.placeholder}
+    
+     onChangeText={setproduct1}
+
+     maxLength={40}
+
+ value={product1}
+    
+     theme={{ roundness: 35,  colors:{text:'black',primary:"black"}}} 
+     
+
+ ></TextInput>
+
+
+<TextInput
+     label="Product Quality 1 *"
+     placeholder=''
+     
+     mode='outlined'
+     style={styles.placeholder}
+    
+     onChangeText={setquality1}
+
+     keyboardType="numeric"
+
+     maxLength={40}
+
+ value={quality1}
+    
+     theme={{ roundness: 35,  colors:{text:'black',primary:"black"}}} 
+     
+
+ ></TextInput>
+
+
+<TextInput
+     label="Rate *"
+     placeholder=''
+     
+     mode='outlined'
+     style={styles.placeholder}
+    
+     onChangeText={setproductnetweight1}
+
+     maxLength={10}
+
+ value={productnetweight1}
+    
+     theme={{ roundness: 35,  colors:{text:'black',primary:"black"}}} 
+     
+
+ ></TextInput>
+
+
+<TextInput
+     label="Ammount 1 *"
+     placeholder=''
+     
+     mode='outlined'
+     style={styles.placeholder}
+    
+     onChangeText={setproductvalue1}
+
+     keyboardType="numeric"
+
+     maxLength={40}
+
+ value={productvalue1}
+    
+     theme={{ roundness: 35,  colors:{text:'black',primary:"black"}}} 
+     
+
+ ></TextInput>
+
+
+
+
+<TextInput
+     label="Product Name 2 "
      placeholder=''
      
      mode='outlined'
@@ -407,7 +457,7 @@ export default function Primiumlink() {
 
 
 <TextInput
-     label="Product Quality 2 *"
+     label="Product Quality 2 "
      placeholder=''
      
      mode='outlined'
@@ -428,7 +478,7 @@ export default function Primiumlink() {
 
 
 <TextInput
-     label="Product Net Weight 2 *"
+     label="Rate "
      placeholder=''
      
      mode='outlined'
@@ -447,7 +497,7 @@ export default function Primiumlink() {
 
 
 <TextInput
-     label="Product value 2 *"
+     label="Ammount 2 "
      placeholder=''
      
      mode='outlined'
@@ -470,7 +520,7 @@ export default function Primiumlink() {
 
 
 <TextInput
-     label="Product Name 3 *"
+     label="Product Name 3 "
      placeholder=''
      
      mode='outlined'
@@ -489,7 +539,7 @@ export default function Primiumlink() {
 
 
 <TextInput
-     label="Product Quality 3 *"
+     label="Product Quality 3 "
      placeholder=''
      
      mode='outlined'
@@ -510,7 +560,7 @@ export default function Primiumlink() {
 
 
 <TextInput
-     label="Product Net Weight 3 *"
+     label="Rate "
      placeholder=''
      
      mode='outlined'
@@ -529,7 +579,7 @@ export default function Primiumlink() {
 
 
 <TextInput
-     label="Product value 3 *"
+     label="Ammount 3 "
      placeholder=''
      
      mode='outlined'
@@ -552,7 +602,7 @@ export default function Primiumlink() {
 
 
 <TextInput
-     label="Product Name 4 *"
+     label="Product Name 4 "
      placeholder=''
      
      mode='outlined'
@@ -571,7 +621,7 @@ export default function Primiumlink() {
 
 
 <TextInput
-     label="Product Quality 4 *"
+     label="Product Quality 4 "
      placeholder=''
      
      mode='outlined'
@@ -592,7 +642,7 @@ export default function Primiumlink() {
 
 
 <TextInput
-     label="Product Net Weight 4 *"
+     label="Rate "
      placeholder=''
      
      mode='outlined'
@@ -611,7 +661,7 @@ export default function Primiumlink() {
 
 
 <TextInput
-     label="Product value 4 *"
+     label="Ammount 4 "
      placeholder=''
      
      mode='outlined'
@@ -650,45 +700,187 @@ export default function Primiumlink() {
      
 
  ></TextInput>
+
+
+
+
+
+ 
+
+
+<TextInput
+     label="Address 1 *"
+     placeholder=''
+     
+     mode='outlined'
+     style={styles.placeholder}
+    
+     onChangeText={setcadd1}
+
+     maxLength={43}
+
+ value={cadd1}
+    
+     theme={{ roundness: 35,  colors:{text:'black',primary:"black"}}} 
+     
+
+ ></TextInput>
+<TextInput
+     label="Address 2"
+     placeholder=''
+     
+     mode='outlined'
+     style={styles.placeholder}
+    
+     onChangeText={setcadd2}
+
+     maxLength={40}
+
+ value={cadd2}
+    
+     theme={{ roundness: 35,  colors:{text:'black',primary:"black"}}} 
+     
+
+ ></TextInput>
+
+
+<TextInput
+     label="Police Station *"
+     placeholder=''
+     
+     mode='outlined'
+     style={styles.placeholder}
+    
+     onChangeText={setps}
+
+     maxLength={40}
+
+ value={ps}
+    
+     theme={{ roundness: 35,  colors:{text:'black',primary:"black"}}} 
+     
+
+ ></TextInput>
+
+<TextInput
+     label="Post Office *"
+     placeholder=''
+     
+     mode='outlined'
+     style={styles.placeholder}
+    
+     onChangeText={setpo}
+
+     maxLength={40}
+
+ value={po}
+    
+     theme={{ roundness: 35,  colors:{text:'black',primary:"black"}}} 
+     
+
+ ></TextInput>
+
+<TextInput
+     label="District *"
+     placeholder=''
+     
+     mode='outlined'
+     style={styles.placeholder}
+    
+     onChangeText={setdist}
+
+     maxLength={40}
+
+ value={dist}
+    
+     theme={{ roundness: 35,  colors:{text:'black',primary:"black"}}} 
+     
+
+ ></TextInput>
+
+<TextInput
+     label="State *"
+     placeholder=''
+     
+     mode='outlined'
+     style={styles.placeholder}
+    
+     onChangeText={setst}
+
+     maxLength={40}
+
+ value={st}
+    
+     theme={{ roundness: 35,  colors:{text:'black',primary:"black"}}} 
+     
+
+ ></TextInput>
+
+
+<TextInput
+     label="Pin *"
+     placeholder=''
+     
+     mode='outlined'
+
+     keyboardType="numeric"
+     style={styles.placeholder}
+    
+     onChangeText={setpin}
+
+     maxLength={25}
+
+ value={pin}
+    
+     theme={{ roundness: 35,  colors:{text:'black',primary:"black"}}} 
+     
+
+ ></TextInput>
   
+
   <TextInput
-       label="Payment Type"
-       placeholder='COD OR PRE-PAID'
-       
-       mode='outlined'
-       style={styles.placeholder}
-      
-       onChangeText={setpaymenttype}
-  
-       maxLength={40}
-  
-   value={paymenttype}
-      
-       theme={{ roundness: 35,  colors:{text:'black',primary:"black"}}} 
-       
-  
-   ></TextInput>
-  
-  
-  <TextInput
-       label="Product Trams and  Condition *"
-       placeholder=''
-       
-       mode='outlined'
-       style={styles.placeholder1}
-      
-       onChangeText={settandc}
-  
-       maxLength={200}
-  
-       multiline= {true}
-  
-   value={tandc}
-      
-       theme={{ roundness: 35,  colors:{text:'black',primary:"black"}}} 
-       
-  
-   ></TextInput>
+     label="LandMark "
+     placeholder=''
+     
+     mode='outlined'
+     style={styles.placeholder}
+    
+     onChangeText={setlandmark}
+
+     maxLength={40}
+
+ value={landmark}
+    
+     theme={{ roundness: 35,  colors:{text:'black',primary:"black"}}} 
+     
+
+ ></TextInput>
+
+
+
+
+
+
+
+<TextInput
+     label="Product Trams and  Condition *"
+     placeholder=''
+     
+     mode='outlined'
+     style={styles.placeholder1}
+    
+     onChangeText={settandc}
+
+     maxLength={200}
+
+     multiline= {true}
+
+ value={tandc}
+    
+     theme={{ roundness: 35,  colors:{text:'black',primary:"black"}}} 
+     
+
+ ></TextInput>
   
   
   <View style={styles.tv}>
@@ -737,123 +929,7 @@ export default function Primiumlink() {
     }
     
   
-    if(isSelect==false){
-  
-  
-      return (
-  
-        <View style={styles.body}> 
-        
-        <ImageBackground
-          style={styles.imgtop10}
-          imageStyle={styles.imageStyle1}
-          source={require("../srcf/Gradient_XrvkRkC.png")}
-  
-        >
-           
-           <TouchableOpacity  onPress={() =>navigation.push('Primiumplus')}>
-  
-  <Image
-  source={require('../srcf/back.png')}
-  resizeMode="cover"
-  style={styles.imagex}
-  ></Image>
-  
-  </TouchableOpacity>
-  
-  
-          <Text style={styles.textmenuupper}> Please Select A Card</Text>
-        </ImageBackground>
-  
-       
-  
-      <ScrollView>
-  
-      <TouchableOpacity  onPress={red}>
-  
-        <ImageBackground
-          style={styles.imgtop1}
-          imageStyle={styles.imageStyle}
-          source={require("../srcf/tem1.png")}
-        >
-         
-        </ImageBackground>
-  
-        </TouchableOpacity>
-  
-  
-      <TouchableOpacity onPress={green}>
-  
-        <ImageBackground
-          style={styles.imgtop2}
-          imageStyle={styles.imageStyle}
-          source={require("../srcf/tem2.png")}
-        >
-         
-        </ImageBackground>
-  
-        </TouchableOpacity>
-  
-  
-      <TouchableOpacity onPress={yellow}>
-  
-        <ImageBackground
-          style={styles.imgtop2}
-          imageStyle={styles.imageStyle}
-          source={require("../srcf/tem3.png")}
-        >
-         
-        </ImageBackground>
-  
-        </TouchableOpacity>
-  
-        
-      <TouchableOpacity  onPress={orange}>
-  
-        <ImageBackground
-          style={styles.imgtop2}
-          imageStyle={styles.imageStyle}
-          source={require("../srcf/tem4.png")}
-        >
-         
-        </ImageBackground>
-  
-        </TouchableOpacity>
-  
-  
-      <TouchableOpacity  onPress={blue}>
-  
-        <ImageBackground
-          style={styles.imgtop2}
-          imageStyle={styles.imageStyle}
-          source={require("../srcf/tem5.png")}
-        >
-         
-        </ImageBackground>
-  
-        </TouchableOpacity>
-  
-      <View style={styles.imgtopb}>
-  
-  
-      </View>
-  
-  
-  
-      </ScrollView>
-        
-      <View style={styles.footer}>
-      
-      <MyTabs/>
-     
-      </View>
-        
-        </View>
-  
-    )
-  
-  
-    }
+    
     
   
   }

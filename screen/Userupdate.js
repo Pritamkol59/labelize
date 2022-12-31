@@ -39,6 +39,16 @@ function Userupdate () {
     const [isLoad, setIsLoad] = useState(false);
     const [userName, setUserName] = useState('');
     const [userEmail, setUserEmail] = useState('');
+
+    const [bankac, setbankac] = useState('');
+    const [ifci, setifci] = useState('');
+    const [bankname, setbankname] = useState('');
+    const [Acholder, setAcholder] = useState('');
+    const [brunch, setbrunch] = useState('');
+    const [web, setweb] = useState('');
+    const [gstN, setgstN] = useState('');
+    const [actype, setactype] = useState('');
+
     const [userAdd, setUserAdd] = useState('');
     const [userBusiness, setUserBusinesss] = useState('');
     const [userImg, setUserImg] = useState('https://w7.pngwing.com/pngs/754/2/png-transparent-samsung-galaxy-a8-a8-user-login-telephone-avatar-pawn-blue-angle-sphere-thumbnail.png');
@@ -87,12 +97,24 @@ function Userupdate () {
           if(myData.success===true){
             setIsLoad(false);
 
-            //console.log(myData);
+            console.log(myData);
            
             setUserName(myData.data.users.name);
+
             setUserEmail(myData.data.users.email);
             setUserAdd(myData.data.users.address);
             setUserBusinesss(myData.data.users.business);
+
+            setbankac(myData.data.users.bankac);
+            setifci(myData.data.users.ifci);
+            setbankname(myData.data.users.bankname);
+
+            setAcholder(myData.data.users.achname);
+            setbrunch(myData.data.users.brunchname);
+             setweb(myData.data.users.web);
+
+            setgstN(myData.data.users.gst);
+            setactype(myData.data.users.actype);
             
             
             
@@ -172,6 +194,16 @@ function Userupdate () {
                 "business":userBusiness,
                 "address":userAdd,
                 
+                "web":web,
+                "gst":gstN,
+                "bankac":bankac,
+
+                "achname":Acholder,
+                "ifci":ifci,
+                "bankname":bankname,
+                "brunchname":brunch,
+                "actype":actype,
+                
 
               })
             
@@ -193,9 +225,9 @@ function Userupdate () {
                 setUserAdd(myData.data.users.address);
                 setUserBusinesss(myData.data.users.business);*/
                 
-                navigation.push('Homepage');
+               // navigation.push('Homepage');
                 
-    
+               alert("Profile Update is Successfully");
     
                
     
@@ -308,7 +340,7 @@ function Userupdate () {
                const myData= await postUserData.json();
               
                if(myData.success===true){
-                navigation.push('Homepage');
+                setMssg(myData.message);
 
                 setIsLoad(false);
               // console.log(myData);
@@ -495,7 +527,7 @@ function Userupdate () {
         // backgroundColor: "rgba(231,231,231,1)",
          alignItems:"center",
         
-         marginTop: windowHeight-70,
+         marginTop: windowHeight-50,
          
 
         
@@ -540,7 +572,7 @@ function Userupdate () {
           <Ellipse
             stroke="rgba(230, 230, 230,1)"
             strokeWidth={0}
-            fill="rgba(47,152,75,1)"
+            fill="#8257fe"
             cx={233}
             cy={222}
             rx={233}
@@ -639,6 +671,147 @@ function Userupdate () {
 
             value={userEmail}
         ></TextInput>
+
+<TextInput
+            label="Update Website:"
+            placeholder=''
+            
+            mode='outlined'
+            style={styles.placeholder}
+           
+            theme={{ roundness: 35, colors:{primary:"red"}}} 
+
+           
+
+            onChangeText={setweb}
+
+            value={web}
+        ></TextInput>
+
+<TextInput
+            label="Update GST No:"
+            placeholder=''
+            
+            mode='outlined'
+            style={styles.placeholder}
+           
+            theme={{ roundness: 35, colors:{primary:"red"}}} 
+
+           
+
+            onChangeText={setgstN}
+
+            value={gstN}
+        ></TextInput>
+
+  
+        
+
+        <TextInput
+            label="Update A/C holder name:- "
+            placeholder=''
+            
+            mode='outlined'
+            style={styles.placeholder}
+           
+            theme={{ roundness: 35, colors:{primary:"red"}}} 
+
+           
+
+            onChangeText={setAcholder}
+
+            value={Acholder}
+        ></TextInput>
+
+
+
+<TextInput
+            label="Update BANK A/c:- "
+            placeholder=''
+            
+            mode='outlined'
+            style={styles.placeholder}
+           
+            theme={{ roundness: 35, colors:{primary:"red"}}} 
+
+           
+
+            onChangeText={setbankac}
+
+            value={bankac}
+        ></TextInput>
+
+
+<TextInput
+            label="Update A/C type:- "
+            placeholder=''
+            
+            mode='outlined'
+            style={styles.placeholder}
+           
+            theme={{ roundness: 35, colors:{primary:"red"}}} 
+
+           
+
+            onChangeText={setactype}
+
+            value={actype}
+        ></TextInput>
+
+
+
+
+  
+       
+
+        <TextInput
+            label="Update Bank Name:- "
+            placeholder=''
+            
+            mode='outlined'
+            style={styles.placeholder}
+           
+            theme={{ roundness: 35, colors:{primary:"red"}}} 
+
+           
+
+            onChangeText={setbankname}
+
+            value={bankname}
+        ></TextInput>
+
+        <TextInput
+            label="Update Brunch Name:- "
+            placeholder=''
+            
+            mode='outlined'
+            style={styles.placeholder}
+           
+            theme={{ roundness: 35, colors:{primary:"red"}}} 
+
+           
+
+            onChangeText={setbrunch}
+
+            value={brunch}
+        ></TextInput>
+
+  
+<TextInput
+            label="Update IFSC Code:- "
+            placeholder=''
+            
+            mode='outlined'
+            style={styles.placeholder}
+           
+            theme={{ roundness: 35, colors:{primary:"red"}}} 
+
+           
+
+            onChangeText={setifci}
+
+            value={ifci}
+        ></TextInput>
   
        
   
@@ -647,7 +820,7 @@ function Userupdate () {
   
   
   
-  </KeyboardAvoidingView>
+  
 
 
   <RBSheet
@@ -671,7 +844,7 @@ function Userupdate () {
             </RBSheet>
 
 
-
+            </KeyboardAvoidingView>
 
   <Button  style={styles.btn}  mode="contained" 
   
@@ -685,7 +858,7 @@ function Userupdate () {
   <Text style={styles.loginOrSignup}>Update</Text> 
     </Button>
 
-
+    
      
 
 

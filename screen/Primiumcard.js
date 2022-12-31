@@ -52,7 +52,7 @@ source={require("../srcf/Gradient_XrvkRkC.png")}
 
 </TouchableOpacity>
 
-<TouchableOpacity>
+<TouchableOpacity onPress={() =>navigation.push('Invoice')}>
 
 <ImageBackground
 style={styles.imgtop2}
